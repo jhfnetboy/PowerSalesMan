@@ -4,6 +4,7 @@
   "main": "src/worker.ts",
   "compatibility_date": "2026-07-01",
   "assets": { "directory": "./public", "binding": "ASSETS" },
+  "ai": { "binding": "AI" },
   "d1_databases": [
     {
       "binding": "DB",
@@ -13,7 +14,8 @@
   ],
   "vars": {
     "DEFAULT_LANG": "en",
-    "SESSION_TTL_DAYS": "30"
+    "SESSION_TTL_DAYS": "30",
+    "AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
   },
   "observability": { "enabled": true }
 }

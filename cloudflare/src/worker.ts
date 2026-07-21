@@ -54,10 +54,23 @@ export default {
         return json({ default_lang: env.DEFAULT_LANG ?? "en" });
       }
       if (path === "/api/login" && method === "POST") {
+        // 登录限流(D1 实现):60s 内失败满 8 次即 429;仅记失败,登录成功清零
+        const ip = req.headers.get("cf-connecting-ip") ?? "unknown";
+        const now = Date.now();
+        const WINDOW = 60000, MAX = 8;
+        await env.DB.prepare("DELETE FROM login_attempts WHERE CAST(window_start AS INTEGER) < ?").bind(now - WINDOW).run();
+        const row = await env.DB.prepare("SELECT count FROM login_attempts WHERE ip=?").bind(ip).first<{ count: number }>();
+        if (row && row.count >= MAX) return json({ error: "rate_limited" }, 429);
+
         await purgeExpiredSessions(env.DB);
         const b = await body(req);
         const s = await login(env.DB, String(b.password ?? ""), adminPw, ttl);
-        if (!s) return json({ error: "invalid_password" }, 401);
+        if (!s) {
+          if (row) await env.DB.prepare("UPDATE login_attempts SET count=count+1 WHERE ip=?").bind(ip).run();
+          else await env.DB.prepare("INSERT INTO login_attempts (ip,count,window_start) VALUES (?,1,?)").bind(ip, String(now)).run();
+          return json({ error: "invalid_password" }, 401);
+        }
+        await env.DB.prepare("DELETE FROM login_attempts WHERE ip=?").bind(ip).run();
         return json({ role: s.role, label: s.label, expires_at: s.expires_at }, 200, { "set-cookie": sessionCookie(s.token, s.expires_at) });
       }
       if (path === "/api/logout" && method === "POST") {
