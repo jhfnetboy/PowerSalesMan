@@ -1,0 +1,490 @@
+{
+  "companies": [
+    {
+      "name": "Data Wow",
+      "type": "software_company",
+      "area": "Bangkok",
+      "address": null,
+      "phone": "02-024-5560",
+      "website": "https://www.datawow.io/",
+      "email": "sales@datawow.io",
+      "line_id": null,
+      "description": "Data science and AI/ML consultancy in Bangkok. Services span big data, machine learning model development, computer vision, AI solution development, data engineering and data labeling for enterprise clients.",
+      "confidence": 0.8,
+      "contacts": [],
+      "sources": [
+        "https://www.datawow.io/",
+        "https://www.datawow.io/services/ai-consultation"
+      ]
+    },
+    {
+      "name": "Sertis",
+      "type": "software_company",
+      "area": "Watthana, Bangkok",
+      "address": "Room 302, 3rd Floor, 597/5 Sukhumvit Road, Khlong Tan Nuea, Watthana, Bangkok 10110",
+      "phone": "+66 2 001 1893",
+      "website": "https://www.sertiscorp.com/",
+      "email": null,
+      "line_id": null,
+      "description": "One of Thailand's leading AI solutions providers. Builds custom AI applications across machine learning, data analytics, computer vision, predictive analytics and big data engineering for retail, manufacturing, energy, banking, finance and hospitality.",
+      "confidence": 0.85,
+      "contacts": [
+        {
+          "name": "Thuchakorn Vachiramon (Tee)",
+          "role": "Founder & CEO",
+          "email": null,
+          "phone": null,
+          "line_id": null
+        }
+      ],
+      "sources": [
+        "https://www.sertiscorp.com/"
+      ]
+    },
+    {
+      "name": "Aware Group",
+      "type": "software_company",
+      "area": "Phaya Thai, Bangkok",
+      "address": "408/106, 24th Floor, Phaholyothin Place, Samsennai, Phaholyothin Rd., Phaya Thai, Bangkok 10400",
+      "phone": "+66 2 619 0226",
+      "website": "https://www.aware.co.th/",
+      "email": "info@aware.co.th",
+      "line_id": null,
+      "description": "Thailand IT and software house with 20+ years in operation. Offers custom software development, systems integration, cloud solutions, digital transformation, managed IT services and IT staffing for banking, healthcare, retail and telecom clients.",
+      "confidence": 0.85,
+      "contacts": [],
+      "sources": [
+        "https://www.aware.co.th/"
+      ]
+    },
+    {
+      "name": "Red Sky Digital",
+      "type": "software_company",
+      "area": "Pathum Wan, Bangkok",
+      "address": "87/2 Wireless Road, Unit 1, 10th Floor, CRC Tower, All Seasons Place, Bangkok 10330",
+      "phone": "+66 82 280 1885",
+      "website": "https://redskydigital.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Bangkok software development company delivering bespoke enterprise software, mobile apps, web development, AWS managed services and HubSpot CRM. Notable focus on banking, insurance and financial-sector clients with high security requirements.",
+      "confidence": 0.8,
+      "contacts": [],
+      "sources": [
+        "https://redskydigital.com/software-development/",
+        "https://redskydigital.com/app-development-home/"
+      ]
+    },
+    {
+      "name": "Looloo Technology",
+      "type": "software_company",
+      "area": "Bangkok",
+      "address": "KX Knowledge Exchange Building, Bangkok",
+      "phone": null,
+      "website": "https://loolootech.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Thai deep-tech AI/ML consultancy (~63 staff) building custom AI solutions including predictive analytics, generative AI and advanced OCR for enterprise clients.",
+      "confidence": 0.75,
+      "contacts": [
+        {
+          "name": "Parith Rangsimanond",
+          "role": "Co-Founder",
+          "email": null,
+          "phone": null,
+          "line_id": null
+        }
+      ],
+      "sources": [
+        "https://loolootech.com/about-us/",
+        "https://www.nationthailand.com/business/tech/40047985"
+      ]
+    },
+    {
+      "name": "AppMan",
+      "type": "software_company",
+      "area": "Bangkok",
+      "address": null,
+      "phone": null,
+      "website": "https://www.appman.co.th/",
+      "email": null,
+      "line_id": null,
+      "description": "Bangkok digital transformation firm and software house that evolved into a leading insurtech/fintech. Builds software to improve insurance sales and financial-services experience for top insurers in Thailand and Asia. Founded 2011.",
+      "confidence": 0.8,
+      "contacts": [
+        {
+          "name": "Thanapoom Chareonsiri (Roger)",
+          "role": "Co-Founder & CEO",
+          "email": null,
+          "phone": null,
+          "line_id": null
+        },
+        {
+          "name": "Amarit Franssen",
+          "role": "Co-Founder",
+          "email": null,
+          "phone": null,
+          "line_id": null
+        }
+      ],
+      "sources": [
+        "https://www.appman.co.th/en/about-us-en/",
+        "https://tracxn.com/d/companies/appman/__HrMb7RxBjRz_iqnVRV7F0gwCH3j9AWWKA87rR0dNne4"
+      ]
+    },
+    {
+      "name": "Cryptomind Group",
+      "type": "software_company",
+      "area": "Bangkok",
+      "address": null,
+      "phone": null,
+      "website": "https://cryptomind.group/",
+      "email": null,
+      "line_id": null,
+      "description": "Bangkok-based digital asset financial services group and blockchain/Web3 product developer. Comprises Cryptomind Advisory, Merkle Capital and Elkrem Capital. Founded 2017-2018.",
+      "confidence": 0.75,
+      "contacts": [
+        {
+          "name": "Sanjay Popli",
+          "role": "CEO",
+          "email": null,
+          "phone": null,
+          "line_id": null
+        }
+      ],
+      "sources": [
+        "https://cryptomind.group/",
+        "https://iq.wiki/wiki/cryptomind-group"
+      ]
+    },
+    {
+      "name": "KOS Design",
+      "type": "software_company",
+      "area": "Watthana (Thonglor), Bangkok",
+      "address": "11/3 United Tower, 11th Fl., Soi 17 Thonglor Sukhumvit 55 Rd., Klongton Nua, Watthana, Bangkok 10110",
+      "phone": "+66 2 041 6049",
+      "website": "https://www.kos.co.th/",
+      "email": null,
+      "line_id": null,
+      "description": "Bangkok ecommerce and web development agency, certified Magento developer and Shopify partner with 10+ years on Magento 1 & 2. Builds complex ecommerce sites for Thai and international brands (e.g. Naraya, Canterbury).",
+      "confidence": 0.8,
+      "contacts": [
+        {
+          "name": "Tomek",
+          "role": "Founder (software engineer)",
+          "email": null,
+          "phone": null,
+          "line_id": null
+        }
+      ],
+      "sources": [
+        "https://www.kos.co.th/ecommerce",
+        "https://www.kos.co.th/magento",
+        "https://www.kos.co.th/contact"
+      ]
+    },
+    {
+      "name": "The Blockchain Asia",
+      "type": "software_company",
+      "area": "Bangkok",
+      "address": null,
+      "phone": null,
+      "website": "https://theblockchain.asia/",
+      "email": null,
+      "line_id": null,
+      "description": "Bangkok-based blockchain/Web3 development firm building scalable, secure and interoperable Web3 ecosystems, specializing in smart contract architecture, DeFi and cross-chain interoperability.",
+      "confidence": 0.6,
+      "contacts": [
+        {
+          "name": "Daniel Gerson",
+          "role": "Founder",
+          "email": null,
+          "phone": null,
+          "line_id": null
+        }
+      ],
+      "sources": [
+        "https://theblockchain.asia/"
+      ]
+    },
+    {
+      "name": "SmartContract Blockchain Studio",
+      "type": "software_company",
+      "area": "Bangkok",
+      "address": null,
+      "phone": null,
+      "website": "https://www.smartcontractthailand.com/",
+      "email": null,
+      "line_id": null,
+      "description": "SmartContract (Thailand) Co., Ltd. — award-winning Bangkok blockchain and AI solution provider delivering enterprise dApps, smart legal contracts, eEscrow, eInsurance and token/cryptocurrency creation. ETHGlobal Tokyo 2023 public-goods winner.",
+      "confidence": 0.7,
+      "contacts": [],
+      "sources": [
+        "https://www.smartcontractthailand.com/",
+        "https://www.crunchbase.com/organization/smartcontract-thailand"
+      ]
+    },
+    {
+      "name": "Manao Software",
+      "type": "software_company",
+      "area": "Bang Rak (Silom), Bangkok",
+      "address": "Park Silom, Level 29 & 30, 1 Convent Road, Silom, Bang Rak, Bangkok 10500",
+      "phone": "+66 2 460 9240",
+      "website": "https://manaosoftware.com/",
+      "email": "hello@manaosoftware.com",
+      "line_id": null,
+      "description": "Danish-owned custom software house founded 2007 with ~120 in-house developers, QA and designers across Bangkok and Chiang Mai. Delivers custom web and mobile applications to global clients; Thailand's first ISTQB Gold-certified software company.",
+      "confidence": 0.85,
+      "contacts": [
+        {
+          "name": "Christopher Mosses",
+          "role": "Founder & CEO",
+          "email": null,
+          "phone": null,
+          "line_id": null
+        }
+      ],
+      "sources": [
+        "https://manaosoftware.com/about-us/",
+        "https://manaosoftware.com/contact/"
+      ]
+    },
+    {
+      "name": "AD System Asia",
+      "type": "software_company",
+      "area": "Khlong Toei (Sukhumvit 42), Bangkok",
+      "address": "1501, 42 Tower 15th Floor, 65 Sukhumvit Soi 42, Phra Khanong, Khlong Toei, Bangkok 10110",
+      "phone": "+66 2 713 6158",
+      "website": "https://www.adsystemasia.com/",
+      "email": "info@adsystemasia.com",
+      "line_id": null,
+      "description": "Bangkok software house (subsidiary of Italian software house AD System S.p.A.) providing custom application development, mobile app development (native and cross-platform), web development, system integration, IT outsourcing and consulting.",
+      "confidence": 0.8,
+      "contacts": [],
+      "sources": [
+        "https://www.adsystemasia.com/",
+        "https://www.adsystemasia.com/contact-us/"
+      ]
+    },
+    {
+      "name": "DBot Software",
+      "type": "software_company",
+      "area": "Watthana, Bangkok",
+      "address": "571 Sukhumvit Rd, Watthana, Bangkok 10110",
+      "phone": null,
+      "website": "https://dbotsoftware.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Software development company with German management (Frankfurt) and Bangkok engineering teams. Focus on digital transformation, intelligent automation and enterprise software for logistics, healthcare, finance and retail.",
+      "confidence": 0.75,
+      "contacts": [
+        {
+          "name": "Maximilian Richter",
+          "role": "CEO",
+          "email": null,
+          "phone": null,
+          "line_id": null
+        }
+      ],
+      "sources": [
+        "https://dbotsoftware.com/",
+        "https://clutch.co/profile/dbot"
+      ]
+    },
+    {
+      "name": "FOURDIGIT (Thailand)",
+      "type": "software_company",
+      "area": "Watthana (Sukhumvit 25), Bangkok",
+      "address": "Vasu 1 Building, 14th Floor, Room 1401/2, Soi Sukhumvit 25, Sukhumvit Road, Khlong Toei Nuea, Watthana, Bangkok",
+      "phone": "+66 83 123 4548",
+      "website": "https://www.4digit.com/en/about/studios/bangkok/",
+      "email": "contact.th@4digit.com",
+      "line_id": null,
+      "description": "Bangkok subsidiary (est. Oct 2019) of Japan's FOURDIGIT design & technology group. Delivers UX-led digital product design and development — web, apps and ecommerce — for real estate, banking and insurance clients.",
+      "confidence": 0.8,
+      "contacts": [],
+      "sources": [
+        "https://www.4digit.com/en/about/studios/bangkok/"
+      ]
+    },
+    {
+      "name": "MVM Infotech",
+      "type": "software_company",
+      "area": "Min Buri, Bangkok",
+      "address": "148/1125, Soi Ramkhamhaeng 190, Min Buri, Bangkok 10510",
+      "phone": "+66 89 496 6397",
+      "website": "https://www.mvminfotech.com/",
+      "email": "marketing@mvminfotech.com",
+      "line_id": null,
+      "description": "Bangkok ecommerce and web development company specializing in WordPress, Magento, OpenCart and Shopify ecommerce plus custom web and mobile app development (Android/iOS) and SEO.",
+      "confidence": 0.75,
+      "contacts": [
+        {
+          "name": "Ajay Kumar",
+          "role": "Director & e-Business Consultant",
+          "email": null,
+          "phone": null,
+          "line_id": null
+        }
+      ],
+      "sources": [
+        "https://www.mvminfotech.com/",
+        "https://www.mvminfotech.com/contact"
+      ]
+    },
+    {
+      "name": "Degito (Miratara Co., Ltd.)",
+      "type": "software_company",
+      "area": "Chatuchak, Bangkok",
+      "address": "Rasa Tower B, 23rd Floor, 555 Phaholyothin Road, Chatuchak, Bangkok 10900",
+      "phone": null,
+      "website": "https://www.degitobangkok.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Bangkok UX/UI design and mobile app / web development agency founded 2016. Offers mobile application development, web design and digital product development for Thai and international clients.",
+      "confidence": 0.8,
+      "contacts": [
+        {
+          "name": "Lakana Pitakteeratham",
+          "role": "Co-Founder & CEO",
+          "email": null,
+          "phone": null,
+          "line_id": null
+        }
+      ],
+      "sources": [
+        "https://www.degitobangkok.com/about",
+        "https://clutch.co/profile/degito-digital-agency"
+      ]
+    },
+    {
+      "name": "Dank Designs",
+      "type": "software_company",
+      "area": "Bangkok",
+      "address": null,
+      "phone": "+66 2 662 0432",
+      "website": "https://dankdesigns.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Bangkok ecommerce web design and development agency building online stores on WordPress/WooCommerce, Shopify and Magento, plus branding, graphic design and SEO services.",
+      "confidence": 0.7,
+      "contacts": [],
+      "sources": [
+        "https://dankdesigns.com/ecommerce-web-design-bangkok/",
+        "https://dankdesigns.com/web-development-bangkok/"
+      ]
+    },
+    {
+      "name": "Odoo (Thailand) Co., Ltd.",
+      "type": "software_company",
+      "area": "Bangkok",
+      "address": null,
+      "phone": null,
+      "website": "https://www.odoo.co.th/",
+      "email": null,
+      "line_id": null,
+      "description": "Bangkok-based Odoo ERP implementation company (since 2014) providing ERP deployment, system integration, Thai localization, custom module development and long-term support for Thai SMEs and large enterprises.",
+      "confidence": 0.7,
+      "contacts": [],
+      "sources": [
+        "https://www.odoo.co.th/"
+      ]
+    },
+    {
+      "name": "Stenas Digital Co., Ltd.",
+      "type": "software_company",
+      "area": "Watthana (Sukhumvit 69), Bangkok",
+      "address": "7 Summer Point Building, Level 2, Suite 144, Sukhumvit 69 Alley, Phra Khanong Nuea, Watthana, Bangkok 10110",
+      "phone": null,
+      "website": "https://www.odoo.com/partners/stenas-digital",
+      "email": null,
+      "line_id": null,
+      "description": "Bangkok Odoo Gold Partner and ERP implementation firm — described as the fastest-growing Odoo partner in Bangkok — providing Odoo ERP implementation, customization and support across Thailand.",
+      "confidence": 0.65,
+      "contacts": [],
+      "sources": [
+        "https://www.odoo.com/partners/country/thailand-208"
+      ]
+    },
+    {
+      "name": "Taube Digital",
+      "type": "software_company",
+      "area": "Bangkok",
+      "address": null,
+      "phone": null,
+      "website": "https://www.odoo.com/partners/taube-digital-11221135",
+      "email": null,
+      "line_id": null,
+      "description": "Bangkok-based Odoo partner and ERP/CRM consulting + system integration firm (est. 2023) doing ERP consulting and custom software development, with 15 years of IT project management experience in business applications.",
+      "confidence": 0.6,
+      "contacts": [],
+      "sources": [
+        "https://www.odoo.com/partners/taube-digital-11221135"
+      ]
+    },
+    {
+      "name": "V Group Consulting & Solutions",
+      "type": "software_company",
+      "area": "Pathum Wan, Bangkok",
+      "address": "87 M-Thai Tower, 23rd Floor, Wireless Road, Lumpini, Pathum Wan, Bangkok 10330",
+      "phone": "+66 87 820 7119",
+      "website": "https://www.odoo.com/partners/country/thailand-208",
+      "email": null,
+      "line_id": null,
+      "description": "Bangkok Odoo ERP partner providing ERP consulting, implementation, customization and support for Thai businesses.",
+      "confidence": 0.6,
+      "contacts": [],
+      "sources": [
+        "https://www.odoo.com/partners/country/thailand-208"
+      ]
+    },
+    {
+      "name": "Dataroot Software Solutions",
+      "type": "software_company",
+      "area": "Bangkok",
+      "address": null,
+      "phone": null,
+      "website": "https://www.odoo.com/partners/dataroot-software-solutions-654879",
+      "email": null,
+      "line_id": null,
+      "description": "Trusted Thailand Odoo partner since 2015 providing Odoo ERP implementation, customization and support services.",
+      "confidence": 0.6,
+      "contacts": [],
+      "sources": [
+        "https://www.odoo.com/partners/dataroot-software-solutions-654879"
+      ]
+    },
+    {
+      "name": "Atato",
+      "type": "software_company",
+      "area": "Bangkok",
+      "address": null,
+      "phone": null,
+      "website": "https://www.atato.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Bangkok-based blockchain company (founded 2017) focused on enterprise blockchain innovation and digital-asset custody. Homepage currently shows a stealth/rebrand placeholder; company existence corroborated by multiple industry sources.",
+      "confidence": 0.5,
+      "contacts": [],
+      "sources": [
+        "https://www.atato.com/",
+        "https://www.technoloader.com/blog/top-10-blockchain-development-companies-in-thailand/"
+      ]
+    },
+    {
+      "name": "Digital Factory",
+      "type": "software_company",
+      "area": "Bangkok",
+      "address": null,
+      "phone": null,
+      "website": "https://www.digitalfactory.co.th/",
+      "email": null,
+      "line_id": null,
+      "description": "Bangkok digital agency / software studio offering web and mobile development and UX/UI design services. Listed among Bangkok web design and development agencies.",
+      "confidence": 0.5,
+      "contacts": [],
+      "sources": [
+        "https://www.digitalfactory.co.th/"
+      ]
+    }
+  ]
+}
