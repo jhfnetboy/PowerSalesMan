@@ -30,7 +30,16 @@
   select.lang { background: var(--panel2); color: var(--text); border: 1px solid var(--line);
     border-radius: 6px; padding: 6px 8px; }
   main { display: flex; height: calc(100vh - 61px); }
-  .list { flex: 1; overflow: auto; }
+  .list { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  .tablewrap { flex: 1; overflow: auto; }
+  .pager { border-top: 1px solid var(--line); padding: 8px 14px; display: flex;
+    gap: 12px; align-items: center; justify-content: center; }
+  .pager button { padding: 5px 10px; }
+  .pager button:disabled { opacity: .4; cursor: default; }
+  .pager .pg { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .mapwrap { margin: 0 0 14px; }
+  .mapwrap iframe { width: 100%; height: 200px; border: 0; border-radius: 8px; display: block; }
+  .maplink { font-size: 12px; margin-top: 6px; display: inline-block; color: var(--accent); text-decoration: none; }
   table { width: 100%; border-collapse: collapse; }
   th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); }
   th { position: sticky; top: 0; background: var(--panel); color: var(--muted);
@@ -84,7 +93,10 @@
     </div>
     <div class="sub" id="login-sub"></div>
     <input id="login-pw" type="password" autofocus />
-    <div style="margin-top:14px"><button id="login-btn" style="width:100%"></button></div>
+    <label style="display:flex;align-items:center;gap:6px;margin:10px 0 0;color:var(--muted);cursor:pointer">
+      <input type="checkbox" id="login-remember" checked style="width:auto" /> <span id="login-remember-lbl"></span>
+    </label>
+    <div style="margin-top:12px"><button id="login-btn" style="width:100%"></button></div>
     <div class="err" id="login-err"></div>
   </div>
 </div>
@@ -107,13 +119,14 @@
   </header>
   <main>
     <div class="list">
-      <table>
+      <div class="tablewrap"><table>
         <thead><tr>
           <th id="th-intent"></th><th id="th-success"></th><th id="th-type"></th>
           <th id="th-name"></th><th id="th-area"></th><th id="th-contacts"></th>
         </tr></thead>
         <tbody id="rows"></tbody>
-      </table>
+      </table></div>
+      <div id="pager" class="pager"></div>
     </div>
     <aside id="detail" class="empty"></aside>
   </main>
@@ -160,6 +173,7 @@ const DICT = {
     buyIntent: "Buy intent", successRate: "success rate", model: "Model", notScored: "Not scored yet — click Re-score.",
     contactsLabel: "Contacts", noContacts: "None yet. Put publicly-findable owner / phone / Line here.", addContact: "+ Add contact",
     ctName: "Name", ctRole: "Role", ctEmail: "email", ctPhone: "phone", ctLine: "Line ID", ctTelegram: "Telegram", del: "del",
+    prev: "‹ Prev", next: "Next ›", openInMaps: "Open in Google Maps ↗", remember: "Remember password",
     loginSub: "Sign in to the leads console", pwPlaceholder: "Password / access code", loginBtn: "Sign in", loginWrong: "Wrong password or code", logout: "Sign out",
     role_admin: "admin", role_sales: "sales", manage: "Sales access",
     grantsTitle: "Sales access codes", labelPh: "Salesperson name / note", daysPh: "Days", create: "Generate code",
@@ -180,6 +194,7 @@ const DICT = {
     buyIntent: "购买意向", successRate: "成功率", model: "模型", notScored: "还没打分,点「重新打分」。",
     contactsLabel: "联系人", noContacts: "暂无。公开可查到的负责人/电话/Line 填这里。", addContact: "+ 添加联系人",
     ctName: "姓名", ctRole: "职位", ctEmail: "email", ctPhone: "电话", ctLine: "Line ID", ctTelegram: "Telegram", del: "删",
+    prev: "‹ 上一页", next: "下一页 ›", openInMaps: "在 Google 地图打开 ↗", remember: "记住密码",
     loginSub: "登陆销售线索管理台", pwPlaceholder: "口令 / 登陆码", loginBtn: "登陆", loginWrong: "口令或登陆码错误", logout: "退出",
     role_admin: "管理员", role_sales: "销售", manage: "销售权限",
     grantsTitle: "销售登陆码", labelPh: "销售姓名 / 备注", daysPh: "天数", create: "生成登陆码",
@@ -200,6 +215,7 @@ const DICT = {
     buyIntent: "ความตั้งใจซื้อ", successRate: "โอกาสสำเร็จ", model: "โมเดล", notScored: "ยังไม่ให้คะแนน — กด ให้คะแนนใหม่",
     contactsLabel: "ผู้ติดต่อ", noContacts: "ยังไม่มี ใส่ผู้รับผิดชอบ / โทรศัพท์ / Line ที่หาได้จากสาธารณะ", addContact: "+ เพิ่มผู้ติดต่อ",
     ctName: "ชื่อ", ctRole: "ตำแหน่ง", ctEmail: "อีเมล", ctPhone: "โทรศัพท์", ctLine: "Line ID", ctTelegram: "Telegram", del: "ลบ",
+    prev: "‹ ก่อนหน้า", next: "ถัดไป ›", openInMaps: "เปิดใน Google Maps ↗", remember: "จำรหัสผ่าน",
     loginSub: "เข้าสู่ระบบจัดการรายชื่อ", pwPlaceholder: "รหัสผ่าน / รหัสเข้าใช้", loginBtn: "เข้าสู่ระบบ", loginWrong: "รหัสผ่านหรือรหัสไม่ถูกต้อง", logout: "ออกจากระบบ",
     role_admin: "แอดมิน", role_sales: "เซลส์", manage: "สิทธิ์เซลส์",
     grantsTitle: "รหัสเข้าใช้สำหรับเซลส์", labelPh: "ชื่อเซลส์ / บันทึก", daysPh: "วัน", create: "สร้างรหัส",
@@ -249,6 +265,7 @@ function applyStaticText() {
   $("th-intent").textContent = t("thIntent"); $("th-success").textContent = t("thSuccess"); $("th-type").textContent = t("thType");
   $("th-name").textContent = t("thName"); $("th-area").textContent = t("thArea"); $("th-contacts").textContent = t("thContacts");
   $("login-sub").textContent = t("loginSub"); $("login-pw").placeholder = t("pwPlaceholder"); $("login-btn").textContent = t("loginBtn");
+  $("login-remember-lbl").textContent = t("remember");
   if ($("detail").classList.contains("empty")) $("detail").textContent = t("detailHint");
   // admin modal
   $("grants-title").textContent = t("grantsTitle"); $("grants-close").textContent = t("close");
@@ -258,13 +275,19 @@ function applyStaticText() {
 }
 
 // ---------- login ----------
-function showLogin() { $("login").classList.remove("hidden"); $("app").classList.add("hidden"); $("login-pw").focus(); }
+function showLogin() {
+  const saved = localStorage.getItem("psm_pw");
+  if (saved != null) { $("login-pw").value = saved; $("login-remember").checked = true; }
+  $("login").classList.remove("hidden"); $("app").classList.add("hidden"); $("login-pw").focus();
+}
 async function doLogin() {
   $("login-err").textContent = "";
+  const pw = $("login-pw").value;
   const r = await fetch("/api/login", { method: "POST", headers: {"content-type":"application/json"},
-    body: JSON.stringify({ password: $("login-pw").value }) });
+    body: JSON.stringify({ password: pw }) });
   if (!r.ok) { $("login-err").textContent = t("loginWrong"); return; }
-  $("login-pw").value = "";
+  if ($("login-remember").checked) localStorage.setItem("psm_pw", pw);
+  else localStorage.removeItem("psm_pw");
   await enterApp();
 }
 $("login-btn").onclick = doLogin;
@@ -288,10 +311,21 @@ async function loadStats() {
   $("s-total").textContent = s.total; $("s-scored").textContent = s.scored; $("s-contacts").textContent = s.contacts;
   const ai = $("s-ai"); ai.textContent = "AI: " + s.ai_model; ai.className = "pill " + (s.ai_enabled ? "on" : "off");
 }
+let ALL_ROWS = [], PAGE_N = 1;
+const PAGE_SIZE = 12;
+
 async function loadList() {
-  const rows = await api("/api/companies").then(r => r.json());
+  ALL_ROWS = await api("/api/companies").then(r => r.json());
+  renderList();
+}
+
+function renderList() {
+  const totalPages = Math.max(1, Math.ceil(ALL_ROWS.length / PAGE_SIZE));
+  if (PAGE_N > totalPages) PAGE_N = totalPages;
+  if (PAGE_N < 1) PAGE_N = 1;
+  const slice = ALL_ROWS.slice((PAGE_N - 1) * PAGE_SIZE, PAGE_N * PAGE_SIZE);
   const tb = $("rows"); tb.innerHTML = "";
-  for (const r of rows) {
+  for (const r of slice) {
     const tr = document.createElement("tr");
     tr.className = "row" + (selected === r.id ? " sel" : "");
     tr.onclick = () => openDetail(r.id);
@@ -306,6 +340,14 @@ async function loadList() {
       '<td class="t">'+r.contacts_count+'</td>';
     tb.appendChild(tr);
   }
+  const pg = $("pager"); pg.innerHTML = "";
+  const prev = document.createElement("button"); prev.className = "ghost"; prev.textContent = t("prev");
+  prev.disabled = PAGE_N <= 1; prev.onclick = () => { PAGE_N--; renderList(); };
+  const next = document.createElement("button"); next.className = "ghost"; next.textContent = t("next");
+  next.disabled = PAGE_N >= totalPages; next.onclick = () => { PAGE_N++; renderList(); };
+  const label = document.createElement("span"); label.className = "pg";
+  label.textContent = PAGE_N + " / " + totalPages + "  ·  " + ALL_ROWS.length;
+  pg.append(prev, label, next);
 }
 
 const TYPES = ["coworking","university","software_company","agency","community","other"];
@@ -317,7 +359,12 @@ async function openDetail(id) {
   const c = d.company, a = d.assessment;
   const aside = $("detail"); aside.className = "";
   const opts = (arr, cur, pre) => arr.map(v => '<option value="'+v+'"'+(v===cur?" selected":"")+'>'+esc(t(pre+v))+'</option>').join("");
+  const mapQ = (c.address && c.address.trim()) ? c.address : [c.name, c.area, "Chiang Mai, Thailand"].filter(Boolean).join(", ");
+  const mapSrc = "https://www.google.com/maps?q=" + encodeURIComponent(mapQ) + "&output=embed";
+  const mapLink = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(mapQ);
   aside.innerHTML =
+    '<div class="mapwrap"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="'+mapSrc+'"></iframe>' +
+      '<a class="maplink" target="_blank" rel="noopener" href="'+mapLink+'">'+t("openInMaps")+'</a></div>' +
     '<label>'+t("fName")+'</label><input id="f-name" value="'+esc(c.name)+'">' +
     '<div class="grid2"><div><label>'+t("fType")+'</label><select id="f-type">'+opts(TYPES,c.type,"type_")+'</select></div>' +
     '<div><label>'+t("fStatus")+'</label><select id="f-status">'+opts(STATUSES,c.status,"status_")+'</select></div></div>' +
