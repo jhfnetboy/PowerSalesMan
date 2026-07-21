@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PowerSalesMan · 清迈销售线索台</title>
+<style>
+  :root {
+    --bg: #0f1115; --panel: #171a21; --panel2: #1e222b; --line: #2a2f3a;
+    --text: #e6e9ef; --muted: #8a91a0; --accent: #4f8cff; --good: #34c77b;
+    --warn: #f2b134; --bad: #ef5b5b;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 14px/1.5 -apple-system, "Segoe UI", "PingFang SC", sans-serif; }
+  header { padding: 16px 24px; border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  h1 { font-size: 18px; margin: 0; }
+  h1 span { color: var(--muted); font-weight: 400; font-size: 13px; }
+  .stat { color: var(--muted); font-size: 13px; }
+  .stat b { color: var(--text); }
+  .pill { padding: 2px 8px; border-radius: 99px; font-size: 12px; }
+  .pill.on { background: rgba(52,199,123,.15); color: var(--good); }
+  .pill.off { background: rgba(242,177,52,.15); color: var(--warn); }
+  button { background: var(--accent); color: #fff; border: 0; border-radius: 6px;
+    padding: 7px 12px; font-size: 13px; cursor: pointer; }
+  button.ghost { background: var(--panel2); color: var(--text); border: 1px solid var(--line); }
+  button:hover { filter: brightness(1.1); }
+  main { display: flex; height: calc(100vh - 65px); }
+  .list { flex: 1; overflow: auto; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); }
+  th { position: sticky; top: 0; background: var(--panel); color: var(--muted);
+    font-weight: 500; font-size: 12px; z-index: 1; }
+  tr.row { cursor: pointer; }
+  tr.row:hover { background: var(--panel); }
+  tr.row.sel { background: var(--panel2); }
+  .score { display: inline-block; min-width: 34px; text-align: center; padding: 1px 6px;
+    border-radius: 5px; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .t { color: var(--muted); font-size: 12px; }
+  aside { width: 420px; border-left: 1px solid var(--line); background: var(--panel);
+    overflow: auto; padding: 20px; }
+  aside.empty { color: var(--muted); display: flex; align-items: center; justify-content: center; }
+  label { display: block; color: var(--muted); font-size: 12px; margin: 12px 0 4px; }
+  input, select, textarea { width: 100%; background: var(--bg); color: var(--text);
+    border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; font: inherit; }
+  textarea { resize: vertical; min-height: 54px; }
+  .assess { background: var(--panel2); border: 1px solid var(--line); border-radius: 8px;
+    padding: 12px; margin: 14px 0; }
+  .assess .big { font-size: 22px; font-weight: 700; }
+  .contact { background: var(--bg); border: 1px solid var(--line); border-radius: 6px;
+    padding: 8px 10px; margin: 6px 0; display: flex; justify-content: space-between; gap: 8px; }
+  .contact small { color: var(--muted); }
+  .del { background: transparent; color: var(--bad); padding: 2px 6px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .rowbtns { display: flex; gap: 8px; margin-top: 16px; }
+  .msg { color: var(--good); font-size: 12px; margin-left: 8px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>PowerSalesMan <span>清迈 AI token 销售线索台</span></h1>
+  <div class="stat">线索 <b id="s-total">–</b></div>
+  <div class="stat">已评分 <b id="s-scored">–</b></div>
+  <div class="stat">联系人 <b id="s-contacts">–</b></div>
+  <div id="s-ai" class="pill off">AI: –</div>
+  <div style="margin-left:auto"><button id="score-all">给未评分的全部打分</button></div>
+</header>
+<main>
+  <div class="list">
+    <table>
+      <thead><tr>
+        <th>意向</th><th>成功率</th><th>类型</th><th>名称</th><th>区域</th><th>联系人</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <aside id="detail" class="empty">← 点左边任意一条线索查看/编辑</aside>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const chColor = (v) => v == null ? "#333" : v >= 65 ? "var(--good)" : v >= 40 ? "var(--warn)" : "var(--bad)";
+let selected = null;
+
+async function loadStats() {
+  const s = await fetch("/api/stats").then(r => r.json());
+  $("s-total").textContent = s.total;
+  $("s-scored").textContent = s.scored;
+  $("s-contacts").textContent = s.contacts;
+  const ai = $("s-ai");
+  ai.textContent = "AI: " + s.ai_model;
+  ai.className = "pill " + (s.ai_enabled ? "on" : "off");
+}
+
+async function loadList() {
+  const rows = await fetch("/api/companies").then(r => r.json());
+  const tb = $("rows");
+  tb.innerHTML = "";
+  for (const r of rows) {
+    const tr = document.createElement("tr");
+    tr.className = "row" + (selected === r.id ? " sel" : "");
+    tr.onclick = () => openDetail(r.id);
+    const intent = r.intent_score == null ? "–" : r.intent_score;
+    const succ = r.success_probability == null ? "–" : r.success_probability;
+    tr.innerHTML =
+      '<td><span class="score" style="background:' + chColor(r.intent_score) + '22;color:' + chColor(r.intent_score) + '">' + intent + '</span></td>' +
+      '<td><span class="score" style="background:' + chColor(r.success_probability) + '22;color:' + chColor(r.success_probability) + '">' + succ + '</span></td>' +
+      '<td class="t">' + (r.type || "") + '</td>' +
+      '<td>' + esc(r.name) + '</td>' +
+      '<td class="t">' + (r.area || "") + '</td>' +
+      '<td class="t">' + r.contacts_count + '</td>';
+    tb.appendChild(tr);
+  }
+}
+
+function esc(s) { const d = document.createElement("div"); d.textContent = s ?? ""; return d.innerHTML; }
+const val = (id) => $(id).value.trim() || null;
+
+async function openDetail(id) {
+  selected = id;
+  const d = await fetch("/api/companies/" + id).then(r => r.json());
+  const c = d.company, a = d.assessment;
+  const aside = $("detail");
+  aside.className = "";
+  aside.innerHTML =
+    '<label>名称</label><input id="f-name" value="' + esc(c.name) + '">' +
+    '<div class="grid2"><div><label>类型</label>' +
+      '<select id="f-type">' + ["coworking","university","software_company","agency","community","other"]
+        .map(t => '<option ' + (t===c.type?"selected":"") + '>' + t + '</option>').join("") + '</select></div>' +
+    '<div><label>状态</label><select id="f-status">' + ["new","enriched","scored","contacted","won","lost"]
+        .map(t => '<option ' + (t===c.status?"selected":"") + '>' + t + '</option>').join("") + '</select></div></div>' +
+    '<div class="grid2"><div><label>区域</label><input id="f-area" value="' + esc(c.area) + '"></div>' +
+    '<div><label>电话</label><input id="f-phone" value="' + esc(c.phone) + '"></div></div>' +
+    '<label>地址</label><input id="f-address" value="' + esc(c.address) + '">' +
+    '<label>网站</label><input id="f-website" value="' + esc(c.website) + '">' +
+    '<label>描述</label><textarea id="f-description">' + esc(c.description) + '</textarea>' +
+    '<div class="rowbtns"><button id="save">保存</button>' +
+      '<button class="ghost" id="score-one">重新打分</button><span class="msg" id="msg"></span></div>' +
+    (a ? '<div class="assess"><div class="t">购买意向</div>' +
+      '<div class="big" style="color:' + chColor(a.intent_score) + '">' + a.intent_score + '<span class="t" style="font-size:13px"> / 成功率 ' + a.success_probability + '</span></div>' +
+      '<div style="margin:6px 0"><b>' + esc(a.recommended_channel) + '</b> · ' + esc(a.budget_estimate) + '</div>' +
+      '<div class="t">' + esc(a.reasoning) + '</div><div class="t" style="margin-top:6px">模型:' + esc(a.model) + '</div></div>'
+      : '<div class="assess t">还没打分,点「重新打分」。</div>') +
+    '<label>联系人</label><div id="contacts"></div>' +
+    '<div class="assess"><div class="grid2"><input id="ct-name" placeholder="姓名"><input id="ct-role" placeholder="职位"></div>' +
+      '<div class="grid2" style="margin-top:8px"><input id="ct-email" placeholder="email"><input id="ct-phone" placeholder="电话"></div>' +
+      '<div class="grid2" style="margin-top:8px"><input id="ct-line" placeholder="Line ID"><input id="ct-tg" placeholder="Telegram"></div>' +
+      '<button style="margin-top:8px" id="add-contact">+ 添加联系人</button></div>';
+
+  renderContacts(d.contacts);
+
+  $("save").onclick = async () => {
+    await fetch("/api/companies/" + id, { method: "PATCH", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ name: val("f-name"), type: $("f-type").value, status: $("f-status").value,
+        area: val("f-area"), phone: val("f-phone"), address: val("f-address"),
+        website: val("f-website"), description: val("f-description") }) });
+    $("msg").textContent = "已保存 ✓";
+    loadList();
+  };
+  $("score-one").onclick = async () => {
+    $("msg").textContent = "打分中…";
+    await fetch("/api/companies/" + id + "/score", { method: "POST" });
+    openDetail(id); loadList(); loadStats();
+  };
+  $("add-contact").onclick = async () => {
+    await fetch("/api/companies/" + id + "/contacts", { method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ name: val("ct-name"), role: val("ct-role"), email: val("ct-email"),
+        phone: val("ct-phone"), line_id: val("ct-line"), telegram: val("ct-tg"), source: "manual" }) });
+    openDetail(id); loadList(); loadStats();
+  };
+  loadList();
+}
+
+function renderContacts(list) {
+  const box = $("contacts");
+  box.innerHTML = list.length ? "" : '<div class="t">暂无。公开可查到的负责人/电话/Line 填这里。</div>';
+  for (const c of list) {
+    const el = document.createElement("div");
+    el.className = "contact";
+    el.innerHTML = "<div><b>" + esc(c.name || "(无名)") + "</b> <small>" + esc(c.role || "") + "</small><br>" +
+      "<small>" + [c.email, c.phone, c.line_id && ("Line:" + c.line_id), c.telegram && ("TG:" + c.telegram)]
+        .filter(Boolean).map(esc).join(" · ") + "</small></div>" +
+      '<button class="del" data-id="' + c.id + '">删</button>';
+    el.querySelector(".del").onclick = async () => {
+      await fetch("/api/contacts/" + c.id, { method: "DELETE" });
+      openDetail(selected); loadStats();
+    };
+    box.appendChild(el);
+  }
+}
+
+$("score-all").onclick = async () => {
+  const rows = await fetch("/api/companies").then(r => r.json());
+  const todo = rows.filter(r => r.intent_score == null);
+  $("score-all").textContent = "打分中 0/" + todo.length;
+  let i = 0;
+  for (const r of todo) {
+    await fetch("/api/companies/" + r.id + "/score", { method: "POST" });
+    $("score-all").textContent = "打分中 " + (++i) + "/" + todo.length;
+    loadList();
+  }
+  $("score-all").textContent = "给未评分的全部打分";
+  loadStats();
+};
+
+loadStats(); loadList();
+</script>
+</body>
+</html>

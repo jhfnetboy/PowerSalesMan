@@ -1,0 +1,28 @@
+{
+  "name": "powersalesman",
+  "version": "0.1.0",
+  "description": "PowerSalesMan — 清迈 AI token 转售的本地 CRM + AI 线索引擎",
+  "type": "module",
+  "bin": {
+    "psm": "./dist/cli.js"
+  },
+  "scripts": {
+    "psm": "tsx src/cli.ts",
+    "build": "tsc && cp src/webpage.html dist/",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.8.1",
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.10.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["better-sqlite3", "esbuild"]
+  }
+}
