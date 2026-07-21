@@ -66,6 +66,25 @@ export function initSchema(): void {
       created_at  TEXT DEFAULT (datetime('now'))
     );
 
+    CREATE TABLE IF NOT EXISTS access_grants (
+      id          INTEGER PRIMARY KEY,
+      label       TEXT,
+      code_hash   TEXT NOT NULL,
+      role        TEXT DEFAULT 'sales',
+      created_at  TEXT DEFAULT (datetime('now')),
+      expires_at  TEXT NOT NULL,
+      revoked     INTEGER DEFAULT 0
+    );
+
+    CREATE TABLE IF NOT EXISTS sessions (
+      token       TEXT PRIMARY KEY,
+      role        TEXT NOT NULL,
+      label       TEXT,
+      grant_id    INTEGER REFERENCES access_grants(id) ON DELETE SET NULL,
+      created_at  TEXT DEFAULT (datetime('now')),
+      expires_at  TEXT NOT NULL
+    );
+
     CREATE INDEX IF NOT EXISTS idx_contacts_company ON contacts(company_id);
     CREATE INDEX IF NOT EXISTS idx_assess_company ON assessments(company_id);
     CREATE INDEX IF NOT EXISTS idx_outreach_company ON outreach(company_id);
