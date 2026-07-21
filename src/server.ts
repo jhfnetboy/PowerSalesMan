@@ -2,10 +2,26 @@ import { createServer, type IncomingMessage, type ServerResponse } from "node:ht
 import { draftOutreach, scoreCompany } from "./score.js";
 import { AI_ENABLED, AI_MODEL_NAME } from "./ai.js";
 import {
-  addContact, addOutreach, deleteContact, getAssessment, getCompany,
+  addContact, addOutreach, deleteContact, getAssessment, getCompany, getOutreach,
   listCompanies, listContacts, listOutreach, saveAssessment, stats,
   updateCompanyFields, updateOutreach,
 } from "./store.js";
+
+function splitEmail(content: string): { subject: string; text: string } {
+  const mt = content.match(/^\s*Subject:\s*(.+)(?:\r?\n)+/i);
+  if (mt) return { subject: mt[1].trim(), text: content.slice(mt[0].length).trim() };
+  return { subject: "Hello from iDoris", text: content.trim() };
+}
+async function sendViaResend(from: string, to: string, subject: string, text: string): Promise<{ ok: boolean; error?: string }> {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) return { ok: false, error: "resend_not_configured" };
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { authorization: `Bearer ${key}`, "content-type": "application/json" },
+    body: JSON.stringify({ from, to, subject, text }),
+  });
+  return res.ok ? { ok: true } : { ok: false, error: `resend ${res.status}: ${(await res.text()).slice(0, 300)}` };
+}
 import {
   createGrant, DEFAULT_LANG, getSession, listGrants, login, logout,
   purgeExpiredSessions, revokeGrant, type Session,
@@ -150,6 +166,26 @@ export function startServer(port: number): void {
       if (om && method === "PATCH") {
         updateOutreach(Number(om[1]), await readBody(req));
         return json(res, 200, { ok: true });
+      }
+
+      const os = path.match(/^\/api\/outreach\/(\d+)\/send$/);
+      if (os && method === "POST") {
+        const o = getOutreach(Number(os[1]));
+        if (!o) return json(res, 404, { error: "not found" });
+        if (o.channel !== "email") return json(res, 400, { error: "only_email_sendable" });
+        const b = await readBody(req);
+        let to: string | null = b.to ? String(b.to) : null;
+        if (!to) {
+          const cs = listContacts(o.company_id) as { email?: string }[];
+          to = cs.find((x) => x.email)?.email ?? null;
+        }
+        if (!to) return json(res, 400, { error: "no_recipient_email" });
+        const { subject, text } = splitEmail(o.content);
+        const from = b.from ? String(b.from) : (process.env.RESEND_FROM ?? "iDoris <onboarding@resend.dev>");
+        const r = await sendViaResend(from, to, subject, text);
+        if (!r.ok) return json(res, r.error === "resend_not_configured" ? 400 : 502, { error: r.error });
+        updateOutreach(o.id, { status: "sent" });
+        return json(res, 200, { ok: true, to });
       }
 
       // ---- 管理员专属:销售授权码 ----

@@ -4,9 +4,26 @@ import {
   createGrant, getSession, listGrants, login, logout, purgeExpiredSessions, revokeGrant, type Session,
 } from "./auth";
 import {
-  addContact, addOutreach, deleteContact, getAssessment, getCompany, listCompanies, listContacts,
+  addContact, addOutreach, deleteContact, getAssessment, getCompany, getOutreach, listCompanies, listContacts,
   listOutreach, saveAssessment, stats, updateCompanyFields, updateOutreach,
 } from "./store";
+
+// 从邮件正文里拆出 Subject 和 body(草稿首行形如 "Subject: xxx")
+function splitEmail(content: string): { subject: string; text: string } {
+  const mt = content.match(/^\s*Subject:\s*(.+)(?:\r?\n)+/i);
+  if (mt) return { subject: mt[1].trim(), text: content.slice(mt[0].length).trim() };
+  return { subject: "Hello from iDoris", text: content.trim() };
+}
+
+async function sendViaResend(apiKey: string, from: string, to: string, subject: string, text: string): Promise<{ ok: boolean; error?: string }> {
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { authorization: `Bearer ${apiKey}`, "content-type": "application/json" },
+    body: JSON.stringify({ from, to, subject, text }),
+  });
+  if (res.ok) return { ok: true };
+  return { ok: false, error: `resend ${res.status}: ${(await res.text()).slice(0, 300)}` };
+}
 
 const COOKIE = "psm_session";
 
@@ -139,6 +156,30 @@ export default {
       if (om && method === "PATCH") {
         await updateOutreach(env.DB, Number(om[1]), await body(req));
         return json({ ok: true });
+      }
+
+      // 真发邮件(Resend)
+      const os = path.match(/^\/api\/outreach\/(\d+)\/send$/);
+      if (os && method === "POST") {
+        if (!env.RESEND_API_KEY) return json({ error: "resend_not_configured" }, 400);
+        const o = await getOutreach(env.DB, Number(os[1]));
+        if (!o) return json({ error: "not found" }, 404);
+        if (o.channel !== "email") return json({ error: "only_email_sendable" }, 400);
+
+        const b = await body(req);
+        let to: string | null = (b.to ? String(b.to) : null);
+        if (!to) {
+          const cs = await listContacts(env.DB, o.company_id);
+          to = (cs.find((x: any) => x.email)?.email) ?? null;
+        }
+        if (!to) return json({ error: "no_recipient_email" }, 400);
+
+        const { subject, text } = splitEmail(o.content);
+        const from = b.from ? String(b.from) : (env.RESEND_FROM ?? "iDoris <onboarding@resend.dev>");
+        const r = await sendViaResend(env.RESEND_API_KEY, from, to, subject, text);
+        if (!r.ok) return json({ error: r.error }, 502);
+        await updateOutreach(env.DB, o.id, { status: "sent" });
+        return json({ ok: true, to });
       }
 
       if (path.startsWith("/api/grants")) {

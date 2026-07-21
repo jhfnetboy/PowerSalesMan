@@ -15,7 +15,8 @@
   "vars": {
     "DEFAULT_LANG": "en",
     "SESSION_TTL_DAYS": "30",
-    "AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+    "AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "RESEND_FROM": "iDoris <hello@idoris.ai>"
   },
   "observability": { "enabled": true }
 }

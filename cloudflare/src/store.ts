@@ -75,6 +75,9 @@ export async function listOutreach(db: D1Database, companyId: number): Promise<a
   const rows = await db.prepare("SELECT * FROM outreach WHERE company_id=? ORDER BY id DESC").bind(companyId).all();
   return rows.results as any[];
 }
+export async function getOutreach(db: D1Database, id: number): Promise<any | null> {
+  return await db.prepare("SELECT * FROM outreach WHERE id=?").bind(id).first();
+}
 export async function addOutreach(db: D1Database, companyId: number, channel: string, content: string): Promise<number> {
   const res = await db.prepare("INSERT INTO outreach (company_id, channel, content, status) VALUES (?, ?, ?, 'draft')")
     .bind(companyId, channel, content).run();

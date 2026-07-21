@@ -134,6 +134,11 @@ export function getAssessment(companyId: number) {
 export function listOutreach(companyId: number) {
   return db.prepare("SELECT * FROM outreach WHERE company_id = ? ORDER BY id DESC").all(companyId);
 }
+export function getOutreach(id: number) {
+  return db.prepare("SELECT * FROM outreach WHERE id = ?").get(id) as
+    | { id: number; company_id: number; channel: string; content: string; status: string }
+    | undefined;
+}
 export function addOutreach(companyId: number, channel: string, content: string): number {
   const info = db.prepare("INSERT INTO outreach (company_id, channel, content, status) VALUES (?, ?, ?, 'draft')").run(companyId, channel, content);
   return Number(info.lastInsertRowid);

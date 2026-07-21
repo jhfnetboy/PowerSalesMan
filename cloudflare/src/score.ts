@@ -14,6 +14,8 @@ export interface Env {
   AI_BASE_URL?: string;
   AI_MODEL?: string;
   AI_API_KEY?: string;
+  RESEND_API_KEY?: string;
+  RESEND_FROM?: string;
 }
 
 const CF_DEFAULT_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
@@ -82,14 +84,14 @@ function coerceText(r: any): string {
 function outreachTemplate(c: any, channel: string): string {
   const who = c.name;
   if (channel === "line") {
-    return `Hi ${who} 👋 I run a small Chiang Mai service helping dev teams get cheaper & easier access to AI coding tokens (Claude Code, Codex, DeepSeek) — no overseas card hassle. Curious how your team handles AI coding tools now? Happy to grab a coffee. ☕`;
+    return `Hi ${who} 👋 This is iDoris — a Chiang Mai service helping dev teams get cheaper & easier access to AI coding tokens (Claude Code, Codex, DeepSeek), no overseas card hassle. Curious how your team handles AI coding tools now? Happy to grab a coffee. Add us on Line: @iDORIS.AI ☕`;
   }
-  return `Subject: AI coding tokens for ${who} — quick question\n\nHi ${who} team,\n\nI run a small local service in Chiang Mai helping dev teams get cheaper & easier access to AI coding tokens (Claude Code, Codex, and top Chinese models like DeepSeek) — without the overseas-card headaches. Not selling anything today, just curious how your team currently handles AI coding tools. Open to a quick coffee near you?\n\nBest,\n`;
+  return `Subject: AI coding tokens for ${who} — quick question\n\nHi ${who} team,\n\nI'm with iDoris, a small local service in Chiang Mai helping dev teams get cheaper & easier access to AI coding tokens (Claude Code, Codex, and top Chinese models like DeepSeek) — without the overseas-card headaches. Not selling anything today, just curious how your team currently handles AI coding tools. Open to a quick coffee near you?\n\nBest,\niDoris · Line @iDORIS.AI\n`;
 }
 
 export async function draftOutreach(env: Env, c: any, channel: string, lang: string): Promise<string> {
   const langName = lang === "th" ? "Thai" : lang === "zh" ? "Chinese" : "English";
-  const sys = `You write short, warm, CONSULTATIVE B2B outreach for a small Chiang Mai service that resells AI coding tokens (Claude Code / Codex / DeepSeek) to local dev teams — the pitch is cheaper & easier access with no overseas-card hassle, flexible top-ups, team billing. Rules: not pushy; lead with a genuine question about how their team uses AI coding tools; offer a quick coffee/chat; respect Thai relationship-first culture. Channel=${channel} (email: include a Subject line then a short body; line: ONE short casual message with maybe an emoji). Write in ${langName}. Output ONLY the message text, no preamble.`;
+  const sys = `You write short, warm, CONSULTATIVE B2B outreach on behalf of "iDoris" (iDORIS.AI), a small Chiang Mai service that resells AI coding tokens (Claude Code / Codex / DeepSeek) to local dev teams — the pitch is cheaper & easier access with no overseas-card hassle, flexible top-ups, team billing. Rules: identify as iDoris; not pushy; lead with a genuine question about how their team uses AI coding tools; offer a quick coffee/chat; respect Thai relationship-first culture; end by inviting them to add Line @iDORIS.AI. Channel=${channel} (email: include a Subject line then a short body; line: ONE short casual message with maybe an emoji). Write in ${langName}. Output ONLY the message text, no preamble.`;
   const user = `Company: ${c.name} | type: ${c.type} | area: ${c.area ?? "?"} | ${c.description ?? ""}`;
   if (env.AI) {
     try {
