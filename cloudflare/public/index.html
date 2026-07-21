@@ -174,6 +174,8 @@ const DICT = {
     contactsLabel: "Contacts", noContacts: "None yet. Put publicly-findable owner / phone / Line here.", addContact: "+ Add contact",
     ctName: "Name", ctRole: "Role", ctEmail: "email", ctPhone: "phone", ctLine: "Line ID", ctTelegram: "Telegram", del: "del",
     prev: "‹ Prev", next: "Next ›", openInMaps: "Open in Google Maps ↗", remember: "Remember password",
+    outreach: "Outreach", genEmail: "✍️ Email draft", genLine: "✍️ Line draft", copy: "Copy", copied: "Copied ✓",
+    markSent: "Mark sent", sent: "sent", genning: "Generating…", noOutreach: "No drafts yet. Generate one — AI writes a personalized message you can copy & send.",
     loginSub: "Sign in to the leads console", pwPlaceholder: "Password / access code", loginBtn: "Sign in", loginWrong: "Wrong password or code", logout: "Sign out",
     role_admin: "admin", role_sales: "sales", manage: "Sales access",
     grantsTitle: "Sales access codes", labelPh: "Salesperson name / note", daysPh: "Days", create: "Generate code",
@@ -195,6 +197,8 @@ const DICT = {
     contactsLabel: "联系人", noContacts: "暂无。公开可查到的负责人/电话/Line 填这里。", addContact: "+ 添加联系人",
     ctName: "姓名", ctRole: "职位", ctEmail: "email", ctPhone: "电话", ctLine: "Line ID", ctTelegram: "Telegram", del: "删",
     prev: "‹ 上一页", next: "下一页 ›", openInMaps: "在 Google 地图打开 ↗", remember: "记住密码",
+    outreach: "触达文案", genEmail: "✍️ 生成 Email", genLine: "✍️ 生成 Line", copy: "复制", copied: "已复制 ✓",
+    markSent: "标记已发送", sent: "已发送", genning: "生成中…", noOutreach: "还没有文案。点生成——AI 写一条个性化文案,你复制去发。",
     loginSub: "登陆销售线索管理台", pwPlaceholder: "口令 / 登陆码", loginBtn: "登陆", loginWrong: "口令或登陆码错误", logout: "退出",
     role_admin: "管理员", role_sales: "销售", manage: "销售权限",
     grantsTitle: "销售登陆码", labelPh: "销售姓名 / 备注", daysPh: "天数", create: "生成登陆码",
@@ -216,6 +220,8 @@ const DICT = {
     contactsLabel: "ผู้ติดต่อ", noContacts: "ยังไม่มี ใส่ผู้รับผิดชอบ / โทรศัพท์ / Line ที่หาได้จากสาธารณะ", addContact: "+ เพิ่มผู้ติดต่อ",
     ctName: "ชื่อ", ctRole: "ตำแหน่ง", ctEmail: "อีเมล", ctPhone: "โทรศัพท์", ctLine: "Line ID", ctTelegram: "Telegram", del: "ลบ",
     prev: "‹ ก่อนหน้า", next: "ถัดไป ›", openInMaps: "เปิดใน Google Maps ↗", remember: "จำรหัสผ่าน",
+    outreach: "ข้อความติดต่อ", genEmail: "✍️ ร่าง Email", genLine: "✍️ ร่าง Line", copy: "คัดลอก", copied: "คัดลอกแล้ว ✓",
+    markSent: "ทำเครื่องหมายว่าส่งแล้ว", sent: "ส่งแล้ว", genning: "กำลังสร้าง…", noOutreach: "ยังไม่มีข้อความ กดสร้าง — AI เขียนข้อความเฉพาะให้ คัดลอกไปส่งได้เลย",
     loginSub: "เข้าสู่ระบบจัดการรายชื่อ", pwPlaceholder: "รหัสผ่าน / รหัสเข้าใช้", loginBtn: "เข้าสู่ระบบ", loginWrong: "รหัสผ่านหรือรหัสไม่ถูกต้อง", logout: "ออกจากระบบ",
     role_admin: "แอดมิน", role_sales: "เซลส์", manage: "สิทธิ์เซลส์",
     grantsTitle: "รหัสเข้าใช้สำหรับเซลส์", labelPh: "ชื่อเซลส์ / บันทึก", daysPh: "วัน", create: "สร้างรหัส",
@@ -384,9 +390,16 @@ async function openDetail(id) {
     '<div class="assess"><div class="grid2"><input id="ct-name" placeholder="'+t("ctName")+'"><input id="ct-role" placeholder="'+t("ctRole")+'"></div>' +
       '<div class="grid2" style="margin-top:8px"><input id="ct-email" placeholder="'+t("ctEmail")+'"><input id="ct-phone" placeholder="'+t("ctPhone")+'"></div>' +
       '<div class="grid2" style="margin-top:8px"><input id="ct-line" placeholder="'+t("ctLine")+'"><input id="ct-tg" placeholder="'+t("ctTelegram")+'"></div>' +
-      '<button style="margin-top:8px" id="add-contact">'+t("addContact")+'</button></div>';
+      '<button style="margin-top:8px" id="add-contact">'+t("addContact")+'</button></div>' +
+    '<label style="margin-top:16px">'+t("outreach")+'</label>' +
+    '<div class="rowbtns"><button class="ghost" id="gen-email">'+t("genEmail")+'</button>' +
+      '<button class="ghost" id="gen-line">'+t("genLine")+'</button><span class="msg" id="omsg"></span></div>' +
+    '<div id="outreach" style="margin-top:8px"></div>';
 
   renderContacts(d.contacts);
+  renderOutreach(d.outreach || []);
+  $("gen-email").onclick = () => genOutreach("email");
+  $("gen-line").onclick = () => genOutreach("line");
   $("save").onclick = async () => {
     await api("/api/companies/"+id, { method:"PATCH", headers:{"content-type":"application/json"},
       body: JSON.stringify({ name: val("f-name"), type: $("f-type").value, status: $("f-status").value,
@@ -419,6 +432,43 @@ function renderContacts(list) {
       '<button class="del" data-id="'+c.id+'">'+t("del")+'</button>';
     el.querySelector(".del").onclick = async () => {
       await api("/api/contacts/"+c.id, { method:"DELETE" }); openDetail(selected); loadStats();
+    };
+    box.appendChild(el);
+  }
+}
+
+async function genOutreach(channel) {
+  $("omsg").textContent = t("genning");
+  await api("/api/companies/" + selected + "/outreach", { method: "POST", headers: { "content-type": "application/json" },
+    body: JSON.stringify({ channel, lang: LANG }) });
+  $("omsg").textContent = "";
+  openDetail(selected);
+}
+
+function renderOutreach(list) {
+  const box = $("outreach");
+  box.innerHTML = list.length ? "" : '<div class="t">' + t("noOutreach") + '</div>';
+  for (const o of list) {
+    const el = document.createElement("div");
+    el.className = "assess";
+    const tag = o.channel === "line" ? "Line" : "Email";
+    const sentTag = o.status === "sent" ? ' · <span style="color:var(--good)">' + t("sent") + '</span>' : "";
+    el.innerHTML =
+      '<div class="t" style="margin-bottom:6px"><b>' + tag + '</b>' + sentTag + '</div>' +
+      '<textarea style="min-height:120px">' + esc(o.content) + '</textarea>' +
+      '<div class="rowbtns"><button class="ghost btn-copy">' + t("copy") + '</button>' +
+      (o.status !== "sent" ? '<button class="ghost btn-sent">' + t("markSent") + '</button>' : "") +
+      '<span class="msg cmsg"></span></div>';
+    const ta = el.querySelector("textarea");
+    ta.onchange = () => api("/api/outreach/" + o.id, { method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify({ content: ta.value }) });
+    el.querySelector(".btn-copy").onclick = async () => {
+      try { await navigator.clipboard.writeText(ta.value); } catch { ta.select(); document.execCommand("copy"); }
+      el.querySelector(".cmsg").textContent = t("copied");
+    };
+    const bs = el.querySelector(".btn-sent");
+    if (bs) bs.onclick = async () => {
+      await api("/api/outreach/" + o.id, { method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify({ status: "sent" }) });
+      openDetail(selected);
     };
     box.appendChild(el);
   }

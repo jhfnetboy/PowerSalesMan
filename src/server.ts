@@ -1,9 +1,10 @@
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
-import { scoreCompany } from "./score.js";
+import { draftOutreach, scoreCompany } from "./score.js";
 import { AI_ENABLED, AI_MODEL_NAME } from "./ai.js";
 import {
-  addContact, deleteContact, getAssessment, getCompany,
-  listCompanies, listContacts, saveAssessment, stats, updateCompanyFields,
+  addContact, addOutreach, deleteContact, getAssessment, getCompany,
+  listCompanies, listContacts, listOutreach, saveAssessment, stats,
+  updateCompanyFields, updateOutreach,
 } from "./store.js";
 import {
   createGrant, DEFAULT_LANG, getSession, listGrants, login, logout,
@@ -107,7 +108,7 @@ export function startServer(port: number): void {
         return json(res, 200, listCompanies());
       }
 
-      const m = path.match(/^\/api\/companies\/(\d+)(\/(score|contacts))?$/);
+      const m = path.match(/^\/api\/companies\/(\d+)(\/(score|contacts|outreach))?$/);
       if (m) {
         const id = Number(m[1]);
         const sub = m[3];
@@ -115,7 +116,7 @@ export function startServer(port: number): void {
         if (!company) return json(res, 404, { error: "not found" });
 
         if (!sub && method === "GET") {
-          return json(res, 200, { company, assessment: getAssessment(id), contacts: listContacts(id) });
+          return json(res, 200, { company, assessment: getAssessment(id), contacts: listContacts(id), outreach: listOutreach(id) });
         }
         if (!sub && method === "PATCH") {
           updateCompanyFields(id, await readBody(req));
@@ -130,11 +131,24 @@ export function startServer(port: number): void {
           const cid = addContact(id, await readBody(req));
           return json(res, 200, { id: cid });
         }
+        if (sub === "outreach" && method === "POST") {
+          const b = await readBody(req);
+          const channel = b.channel === "line" ? "line" : "email";
+          const content = await draftOutreach(company, channel, String(b.lang ?? "en"));
+          const oid = addOutreach(id, channel, content);
+          return json(res, 200, { id: oid, channel, content });
+        }
       }
 
       const cm = path.match(/^\/api\/contacts\/(\d+)$/);
       if (cm && method === "DELETE") {
         deleteContact(Number(cm[1]));
+        return json(res, 200, { ok: true });
+      }
+
+      const om = path.match(/^\/api\/outreach\/(\d+)$/);
+      if (om && method === "PATCH") {
+        updateOutreach(Number(om[1]), await readBody(req));
         return json(res, 200, { ok: true });
       }
 

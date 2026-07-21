@@ -131,6 +131,23 @@ export function getAssessment(companyId: number) {
   return db.prepare("SELECT * FROM assessments WHERE company_id = ? ORDER BY created_at DESC, id DESC LIMIT 1").get(companyId);
 }
 
+export function listOutreach(companyId: number) {
+  return db.prepare("SELECT * FROM outreach WHERE company_id = ? ORDER BY id DESC").all(companyId);
+}
+export function addOutreach(companyId: number, channel: string, content: string): number {
+  const info = db.prepare("INSERT INTO outreach (company_id, channel, content, status) VALUES (?, ?, ?, 'draft')").run(companyId, channel, content);
+  return Number(info.lastInsertRowid);
+}
+export function updateOutreach(id: number, fields: { content?: string; status?: string }): void {
+  const sets: string[] = [];
+  const params: Record<string, unknown> = { id };
+  for (const key of ["content", "status"] as const) {
+    if (fields[key] !== undefined) { sets.push(`${key} = @${key}`); params[key] = fields[key]; }
+  }
+  if (sets.length === 0) return;
+  db.prepare(`UPDATE outreach SET ${sets.join(", ")} WHERE id = @id`).run(params);
+}
+
 export function stats() {
   const total = (db.prepare("SELECT COUNT(*) n FROM companies").get() as { n: number }).n;
   const scored = (db.prepare("SELECT COUNT(*) n FROM companies WHERE status NOT IN ('new')").get() as { n: number }).n;

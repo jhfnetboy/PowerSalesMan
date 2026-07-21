@@ -72,6 +72,37 @@ function userPrompt(c: any): string {
   return `名称:${c.name}\n类型:${c.type}\n区域:${c.area ?? "未知"}\n网站:${c.website ?? "未知"}\n描述:${c.description ?? "无"}\n可信度:${c.confidence}\n请只输出 JSON。`;
 }
 
+// ---- 触达文案生成 ----
+function coerceText(r: any): string {
+  if (typeof r === "string") return r;
+  if (r && typeof r.response === "string") return r.response;
+  if (r && r.response) return String(r.response);
+  return "";
+}
+function outreachTemplate(c: any, channel: string): string {
+  const who = c.name;
+  if (channel === "line") {
+    return `Hi ${who} 👋 I run a small Chiang Mai service helping dev teams get cheaper & easier access to AI coding tokens (Claude Code, Codex, DeepSeek) — no overseas card hassle. Curious how your team handles AI coding tools now? Happy to grab a coffee. ☕`;
+  }
+  return `Subject: AI coding tokens for ${who} — quick question\n\nHi ${who} team,\n\nI run a small local service in Chiang Mai helping dev teams get cheaper & easier access to AI coding tokens (Claude Code, Codex, and top Chinese models like DeepSeek) — without the overseas-card headaches. Not selling anything today, just curious how your team currently handles AI coding tools. Open to a quick coffee near you?\n\nBest,\n`;
+}
+
+export async function draftOutreach(env: Env, c: any, channel: string, lang: string): Promise<string> {
+  const langName = lang === "th" ? "Thai" : lang === "zh" ? "Chinese" : "English";
+  const sys = `You write short, warm, CONSULTATIVE B2B outreach for a small Chiang Mai service that resells AI coding tokens (Claude Code / Codex / DeepSeek) to local dev teams — the pitch is cheaper & easier access with no overseas-card hassle, flexible top-ups, team billing. Rules: not pushy; lead with a genuine question about how their team uses AI coding tools; offer a quick coffee/chat; respect Thai relationship-first culture. Channel=${channel} (email: include a Subject line then a short body; line: ONE short casual message with maybe an emoji). Write in ${langName}. Output ONLY the message text, no preamble.`;
+  const user = `Company: ${c.name} | type: ${c.type} | area: ${c.area ?? "?"} | ${c.description ?? ""}`;
+  if (env.AI) {
+    try {
+      const r = await env.AI.run(env.AI_MODEL ?? CF_DEFAULT_MODEL, {
+        messages: [{ role: "system", content: sys }, { role: "user", content: user }], max_tokens: 400,
+      });
+      const t = coerceText(r).trim();
+      if (t) return t;
+    } catch { /* fall through */ }
+  }
+  return outreachTemplate(c, channel);
+}
+
 export async function scoreCompany(env: Env, c: any): Promise<{ result: ScoreResult; model: string }> {
   // 1) Workers AI 绑定优先
   if (env.AI) {

@@ -1,11 +1,11 @@
 import type { Env } from "./score";
-import { aiEnabled, aiModelName, scoreCompany } from "./score";
+import { aiEnabled, aiModelName, draftOutreach, scoreCompany } from "./score";
 import {
   createGrant, getSession, listGrants, login, logout, purgeExpiredSessions, revokeGrant, type Session,
 } from "./auth";
 import {
-  addContact, deleteContact, getAssessment, getCompany, listCompanies, listContacts,
-  saveAssessment, stats, updateCompanyFields,
+  addContact, addOutreach, deleteContact, getAssessment, getCompany, listCompanies, listContacts,
+  listOutreach, saveAssessment, stats, updateCompanyFields, updateOutreach,
 } from "./store";
 
 const COOKIE = "psm_session";
@@ -92,7 +92,7 @@ export default {
         return json(await listCompanies(env.DB));
       }
 
-      const m = path.match(/^\/api\/companies\/(\d+)(\/(score|contacts))?$/);
+      const m = path.match(/^\/api\/companies\/(\d+)(\/(score|contacts|outreach))?$/);
       if (m) {
         const id = Number(m[1]);
         const sub = m[3];
@@ -100,7 +100,12 @@ export default {
         if (!company) return json({ error: "not found" }, 404);
 
         if (!sub && method === "GET") {
-          return json({ company, assessment: await getAssessment(env.DB, id), contacts: await listContacts(env.DB, id) });
+          return json({
+            company,
+            assessment: await getAssessment(env.DB, id),
+            contacts: await listContacts(env.DB, id),
+            outreach: await listOutreach(env.DB, id),
+          });
         }
         if (!sub && method === "PATCH") {
           await updateCompanyFields(env.DB, id, await body(req));
@@ -115,11 +120,24 @@ export default {
           const cid = await addContact(env.DB, id, await body(req));
           return json({ id: cid });
         }
+        if (sub === "outreach" && method === "POST") {
+          const b = await body(req);
+          const channel = b.channel === "line" ? "line" : "email";
+          const content = await draftOutreach(env, company, channel, String(b.lang ?? "en"));
+          const oid = await addOutreach(env.DB, id, channel, content);
+          return json({ id: oid, channel, content });
+        }
       }
 
       const cm = path.match(/^\/api\/contacts\/(\d+)$/);
       if (cm && method === "DELETE") {
         await deleteContact(env.DB, Number(cm[1]));
+        return json({ ok: true });
+      }
+
+      const om = path.match(/^\/api\/outreach\/(\d+)$/);
+      if (om && method === "PATCH") {
+        await updateOutreach(env.DB, Number(om[1]), await body(req));
         return json({ ok: true });
       }
 

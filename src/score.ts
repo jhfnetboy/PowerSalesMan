@@ -32,6 +32,25 @@ function heuristic(c: Company): ScoreResult {
   };
 }
 
+function outreachTemplate(c: Company, channel: string): string {
+  if (channel === "line") {
+    return `Hi ${c.name} 👋 I run a small Chiang Mai service helping dev teams get cheaper & easier access to AI coding tokens (Claude Code, Codex, DeepSeek) — no overseas card hassle. Curious how your team handles AI coding tools now? Happy to grab a coffee. ☕`;
+  }
+  return `Subject: AI coding tokens for ${c.name} — quick question\n\nHi ${c.name} team,\n\nI run a small local service in Chiang Mai helping dev teams get cheaper & easier access to AI coding tokens (Claude Code, Codex, and top Chinese models like DeepSeek) — without the overseas-card headaches. Not selling anything today, just curious how your team currently handles AI coding tools. Open to a quick coffee near you?\n\nBest,\n`;
+}
+
+export async function draftOutreach(c: Company, channel: string, lang: string): Promise<string> {
+  const langName = lang === "th" ? "Thai" : lang === "zh" ? "Chinese" : "English";
+  if (!AI_ENABLED) return outreachTemplate(c, channel);
+  const sys = `You write short, warm, CONSULTATIVE B2B outreach for a small Chiang Mai service that resells AI coding tokens (Claude Code / Codex / DeepSeek) to local dev teams — cheaper & easier access, no overseas-card hassle, flexible top-ups. Not pushy; lead with a genuine question about how their team uses AI coding tools; offer a quick coffee; respect Thai relationship-first culture. Channel=${channel} (email: Subject line then short body; line: ONE short casual message with maybe an emoji). Write in ${langName}. Output ONLY the message text.`;
+  try {
+    const text = await chat(sys, `Company: ${c.name} | type: ${c.type} | area: ${c.area ?? "?"} | ${c.description ?? ""}`);
+    return text.trim() || outreachTemplate(c, channel);
+  } catch {
+    return outreachTemplate(c, channel);
+  }
+}
+
 export async function scoreCompany(c: Company): Promise<{ result: ScoreResult; model: string }> {
   if (!AI_ENABLED) return { result: heuristic(c), model: "heuristic" };
 

@@ -71,6 +71,26 @@ export async function deleteContact(db: D1Database, id: number): Promise<void> {
   await db.prepare("DELETE FROM contacts WHERE id=?").bind(id).run();
 }
 
+export async function listOutreach(db: D1Database, companyId: number): Promise<any[]> {
+  const rows = await db.prepare("SELECT * FROM outreach WHERE company_id=? ORDER BY id DESC").bind(companyId).all();
+  return rows.results as any[];
+}
+export async function addOutreach(db: D1Database, companyId: number, channel: string, content: string): Promise<number> {
+  const res = await db.prepare("INSERT INTO outreach (company_id, channel, content, status) VALUES (?, ?, ?, 'draft')")
+    .bind(companyId, channel, content).run();
+  return Number(res.meta.last_row_id);
+}
+export async function updateOutreach(db: D1Database, id: number, fields: Record<string, unknown>): Promise<void> {
+  const sets: string[] = [];
+  const vals: unknown[] = [];
+  for (const key of ["content", "status"]) {
+    if (key in fields && fields[key] !== undefined) { sets.push(`${key}=?`); vals.push(fields[key]); }
+  }
+  if (sets.length === 0) return;
+  vals.push(id);
+  await db.prepare(`UPDATE outreach SET ${sets.join(", ")} WHERE id=?`).bind(...vals).run();
+}
+
 export async function stats(db: D1Database): Promise<{ total: number; scored: number; contacts: number }> {
   const total = await db.prepare("SELECT COUNT(*) n FROM companies").first<{ n: number }>();
   const scored = await db.prepare("SELECT COUNT(*) n FROM companies WHERE status NOT IN ('new')").first<{ n: number }>();

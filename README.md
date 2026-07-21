@@ -30,8 +30,11 @@
 ✅ 数据现状:**75 家机构**(含 54 家软件公司/agency,40 家带地址、35 家带电话) — 出处见 `findings/`
 
 ✅ **Cloudflare 上云**:Worker + D1 + 静态资源三合一,公网可访问 → **https://powersalesman.jhfnetboy.workers.dev**(登录、地图、打分、销售授权码全可用,数据在 D1)
+✅ **Workers AI 打分**(云端零 token,`@cf/meta/llama-3.3-70b`)+ **D1 登录限流**(60s 失败满8次→429)
+✅ **AI 触达文案**:一键生成 Email / Line 个性化文案(跟随界面语言,可编辑/复制/标记已发送)
+✅ **触发式采集 skill** `/psm-enrich`:对话里说需求 → 联网抓取 → 合并去重入库 → 打分 → 可选同步 D1(不做定时循环)
 
-🚧 下一步:每 4h 增量循环、email/Line 自动触达、登录限流
+🚧 下一步:触达自动发送(Resend 邮件 / Line 官号)、更多软件公司增量富集
 
 ## ☁️ Cloudflare 部署(cloudflare/)
 
