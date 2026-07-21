@@ -1,0 +1,427 @@
+{
+  "companies": [
+    {
+      "name": "Manao Software",
+      "type": "software_company",
+      "area": "Si Phum, Mueang",
+      "address": "Icon IT Building, 8th Floor, 29 Hussadhisawee Road, Si Phum, Mueang, Chiang Mai 50200, Thailand",
+      "phone": "+66 2460 9240",
+      "website": "https://manaosoftware.com/",
+      "email": "info@manaosoftware.com",
+      "line_id": null,
+      "description": "Danish-owned custom software development and outsourcing house (web, mobile, IT staff augmentation), one of the largest in Chiang Mai; clients include Microsoft, WHO, BBC.",
+      "confidence": 0.95,
+      "contacts": [
+        {"name": "Christopher Mosses", "role": "Founder", "email": null, "phone": null, "line_id": null}
+      ],
+      "sources": [
+        "https://manaosoftware.com/about-us/",
+        "https://www.crunchbase.com/organization/manao-software",
+        "https://techbehemoths.com/company/manao-software"
+      ]
+    },
+    {
+      "name": "Iglu (Red Orange Co., Ltd.)",
+      "type": "software_company",
+      "area": "Suthep, Mueang",
+      "address": "91/11 Moo 5, Tambon Suthep, Mueang Chiang Mai, Chiang Mai 50000, Thailand",
+      "phone": "+66 53 111 139",
+      "website": "https://iglu.net/",
+      "email": "cool@iglu.net",
+      "line_id": null,
+      "description": "Cloud consulting, software and web development firm and remote-developer employment platform with offices in Chiang Mai and Bangkok.",
+      "confidence": 0.9,
+      "contacts": [
+        {"name": "Ozzi (Oskar)", "role": "Founder", "email": null, "phone": null, "line_id": null}
+      ],
+      "sources": [
+        "https://iglu.net/about/",
+        "https://iglu.net/thailand/",
+        "https://creativechiangmai.com/language/en/itdirectory/iglu-red-orange-co-ltd/"
+      ]
+    },
+    {
+      "name": "Aware Corporation Ltd. (Aware Group)",
+      "type": "software_company",
+      "area": "Pa Bong, Saraphi",
+      "address": "25/1 Moo 2, T. Pa Bong, A. Saraphi, Chiang Mai 50140, Thailand",
+      "phone": "+66 53 263 350",
+      "website": "https://www.aware.co.th/",
+      "email": "info@aware.co.th",
+      "line_id": null,
+      "description": "Software development and IT services firm (100+ staff) headquartered in Chiang Mai, with offices in Bangkok and Chiang Rai; cloud, web and enterprise systems.",
+      "confidence": 0.9,
+      "contacts": [],
+      "sources": [
+        "https://www.aware.co.th/",
+        "https://localist.konigle.com/th/chiang-mai/web-development/"
+      ]
+    },
+    {
+      "name": "Intropica Co., Ltd.",
+      "type": "software_company",
+      "area": "Suthep, Mueang",
+      "address": "191 Huay Kaew Rd, T. Suthep, A. Mueang, Chiang Mai 50200, Thailand",
+      "phone": "+66 53 217 747",
+      "website": "https://www.intropica.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Custom software and web application development firm, one of the earliest in Chiang Mai (founded 2001); early Java/Spring solution provider in Thailand.",
+      "confidence": 0.9,
+      "contacts": [
+        {"name": "Simon Robson", "role": "Founder", "email": null, "phone": null, "line_id": null}
+      ],
+      "sources": [
+        "https://www.intropica.com/"
+      ]
+    },
+    {
+      "name": "Codehouse",
+      "type": "software_company",
+      "area": "Nimman, Mueang",
+      "address": "Nimman Road, Chiang Mai 50200, Thailand",
+      "phone": "+66 99 010 4356",
+      "website": "https://www.codehouse.co.th/",
+      "email": "info@codehouse.co.th",
+      "line_id": "@376yaqxr",
+      "description": "Chiang Mai software house (10+ years) delivering custom web development, iOS/Android mobile apps, ERP systems and IT consulting for Thai businesses.",
+      "confidence": 0.9,
+      "contacts": [],
+      "sources": [
+        "https://www.codehouse.co.th/"
+      ]
+    },
+    {
+      "name": "SarnTor Software Services",
+      "type": "software_company",
+      "area": "Chiang Mai",
+      "address": null,
+      "phone": "+66 93 132 1334",
+      "website": "https://www.sarntorsoft.com/",
+      "email": "contact@sarntorsoft.com",
+      "line_id": null,
+      "description": "Chiang Mai software development firm building solutions that connect business systems, automate processes and provide centralized dashboards.",
+      "confidence": 0.8,
+      "contacts": [],
+      "sources": [
+        "https://www.sarntorsoft.com/"
+      ]
+    },
+    {
+      "name": "Banana Coding Co., Ltd.",
+      "type": "software_company",
+      "area": "Suthep, Mueang",
+      "address": "34/12 Moo 5 Canal Road, Suthep, Chiang Mai 50200, Thailand",
+      "phone": "+66 53 020 078",
+      "website": "https://www.bananacoding.com/",
+      "email": "hello@bananacoding.com",
+      "line_id": null,
+      "description": "Chiang Mai software studio building custom software with expertise in .NET, Ruby on Rails, mobile development and UX design.",
+      "confidence": 0.85,
+      "contacts": [],
+      "sources": [
+        "https://www.bananacoding.com/"
+      ]
+    },
+    {
+      "name": "Lanna Softworks",
+      "type": "software_company",
+      "area": "Chiang Mai",
+      "address": null,
+      "phone": null,
+      "website": "https://www.lannasoftworks.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Chiang Mai software and IT solutions provider offering mobile apps, websites, custom applications, QA testing and IT staff augmentation.",
+      "confidence": 0.75,
+      "contacts": [],
+      "sources": [
+        "https://www.lannasoftworks.com/"
+      ]
+    },
+    {
+      "name": "Buzzwoo Asia Co., Ltd.",
+      "type": "software_company",
+      "area": "Chang Phueak, Mueang",
+      "address": "149/7 Moo 2, Chang Phueak, Mueang, Chiang Mai 50300, Thailand",
+      "phone": null,
+      "website": "https://www.buzzwoo.de/",
+      "email": null,
+      "line_id": null,
+      "description": "Chiang Mai branch (opened 2011) of German digital agency Buzzwoo; technical consulting, software development, and digital/performance marketing.",
+      "confidence": 0.8,
+      "contacts": [],
+      "sources": [
+        "https://creativechiangmai.com/language/en/itdirectory/buzzwoo-asia-co-ltd/",
+        "https://www.facebook.com/buzzwooasia/",
+        "https://startupchiangmai.com/chiang-mai-software-companies-with-communities"
+      ]
+    },
+    {
+      "name": "Artisan Digital",
+      "type": "software_company",
+      "area": "Suthep, Mueang",
+      "address": "27/3 Sirimangkalajarn Soi 13, Suthep, Chiang Mai 50200, Thailand",
+      "phone": null,
+      "website": "https://medium.com/artisan-digital-agency/about",
+      "email": null,
+      "line_id": null,
+      "description": "Chiang Mai digital agency creating software products, design and digital-marketing consulting; ties to Chiang Mai University Computer Science and local dev community.",
+      "confidence": 0.75,
+      "contacts": [
+        {"name": "Toi", "role": "Founder", "email": null, "phone": null, "line_id": null}
+      ],
+      "sources": [
+        "https://medium.com/artisan-digital-agency/about",
+        "https://startupchiangmai.com/chiang-mai-software-companies-with-communities"
+      ]
+    },
+    {
+      "name": "THiNKNET Co., Ltd. (Chiang Mai office)",
+      "type": "software_company",
+      "area": "Chang Phueak, Mueang",
+      "address": "114/3 Superhighway Road, Soi Potaram 1, Chang Phueak, Mueang Chiang Mai, Chiang Mai 50300, Thailand",
+      "phone": "+66 2 480 9990",
+      "website": "https://www.thinknet.co.th/",
+      "email": null,
+      "line_id": null,
+      "description": "Thai tech company (developer of JobThai and THiNKNET Maps/GIS) with a Chiang Mai dev office; runs the Chiang Mai Developer Meetups.",
+      "confidence": 0.8,
+      "contacts": [],
+      "sources": [
+        "https://www.thinknet.co.th/",
+        "https://startupchiangmai.com/chiang-mai-software-companies-with-communities"
+      ]
+    },
+    {
+      "name": "PCMI (PCMI Corporation) Chiang Mai",
+      "type": "software_company",
+      "area": "Chiang Mai",
+      "address": "StarWork Building, 87/9 Floor 3, Room 303, Chiang Mai, Thailand",
+      "phone": null,
+      "website": "https://www.pcmicorp.com/chiang-mai/",
+      "email": "humanresources@pcmicorp.com",
+      "line_id": null,
+      "description": "Chiang Mai software development and QA center of PCMI, a global F&I administration software vendor (PCRS platform).",
+      "confidence": 0.85,
+      "contacts": [],
+      "sources": [
+        "https://www.pcmicorp.com/chiang-mai/",
+        "https://www.pcmicorp.com/2016/06/new-office-space/"
+      ]
+    },
+    {
+      "name": "Seven Peaks Software",
+      "type": "software_company",
+      "area": "Chiang Mai (branch; HQ Bangkok)",
+      "address": null,
+      "phone": null,
+      "website": "https://sevenpeakssoftware.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Bangkok-headquartered digital product / software consultancy with a Chiang Mai presence (Office Manager and long-running Omkoi District CSR program).",
+      "confidence": 0.5,
+      "contacts": [],
+      "sources": [
+        "https://sevenpeakssoftware.com/about-us/",
+        "https://sevenpeakssoftware.com/blog/empowering-remote-communities-through-csr/"
+      ]
+    },
+    {
+      "name": "Hire Quality Software",
+      "type": "software_company",
+      "area": "Chiang Mai",
+      "address": null,
+      "phone": null,
+      "website": "https://www.linkedin.com/company/hire-quality-software",
+      "email": null,
+      "line_id": null,
+      "description": "Microsoft-certified Chiang Mai software firm (est. 2020) offering custom software, mobile and web development, cloud consulting and QA testing.",
+      "confidence": 0.7,
+      "contacts": [],
+      "sources": [
+        "https://www.linkedin.com/company/hire-quality-software",
+        "https://www.facebook.com/hirequalitysoftware/",
+        "https://www.softwareworld.co/web-development-companies/thailand/chiang-mai/"
+      ]
+    },
+    {
+      "name": "Lytbox Co., Ltd. (Lytbox Digital)",
+      "type": "software_company",
+      "area": "Tha Sala, Mueang",
+      "address": "199/73 Moo 4, Tambon Tha Sala, Mueang Chiang Mai, Chiang Mai 50000, Thailand",
+      "phone": "+66 90 332 4999",
+      "website": "https://lytbox.co/",
+      "email": "hello@lytbox.co",
+      "line_id": null,
+      "description": "Chiang Mai digital agency specializing in web design/development, branding and digital marketing.",
+      "confidence": 0.75,
+      "contacts": [],
+      "sources": [
+        "https://localist.konigle.com/th/chiang-mai/web-development/",
+        "https://puddding.com/lytbox.co"
+      ]
+    },
+    {
+      "name": "iweb cafe (rับทำเว็บไซต์ เชียงใหม่)",
+      "type": "software_company",
+      "area": "Chang Phueak, Mueang",
+      "address": "29, 14 Jed Yod-Yu Yen Soi 4, Tambon Chang Phueak, Mueang Chiang Mai, Chiang Mai 50300, Thailand",
+      "phone": "+66 97 426 6961",
+      "website": "https://iweb.cafe/",
+      "email": null,
+      "line_id": null,
+      "description": "Chiang Mai web design and development studio building custom business websites.",
+      "confidence": 0.7,
+      "contacts": [],
+      "sources": [
+        "https://localist.konigle.com/th/chiang-mai/web-development/"
+      ]
+    },
+    {
+      "name": "CM Nice Solution Co., Ltd.",
+      "type": "software_company",
+      "area": "Chang Phueak, Mueang",
+      "address": "100 Chang Phueak 132, Huay Kaew Rd, Tambon Chang Phueak, Mueang Chiang Mai, Chiang Mai 50300, Thailand",
+      "phone": "+66 94 445 5244",
+      "website": "https://www.cmnicesolutions.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Chiang Mai web design and development company serving local businesses.",
+      "confidence": 0.7,
+      "contacts": [],
+      "sources": [
+        "https://localist.konigle.com/th/chiang-mai/web-development/"
+      ]
+    },
+    {
+      "name": "Online Development Company Limited (Chiang Mai Web Design)",
+      "type": "software_company",
+      "area": "San Phi Suea, Mueang",
+      "address": "88/15 Tambon San Phi Suea, Mueang Chiang Mai, Chiang Mai 50300, Thailand",
+      "phone": "+66 85 041 9674",
+      "website": "https://www.chiangmai-webdesign.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Chiang Mai web design and development agency.",
+      "confidence": 0.7,
+      "contacts": [],
+      "sources": [
+        "https://localist.konigle.com/th/chiang-mai/web-development/"
+      ]
+    },
+    {
+      "name": "IT Global Co., Ltd. (I.T. Globol)",
+      "type": "software_company",
+      "area": "Nong Khwai, Hang Dong",
+      "address": "101/7 Moo 7, Nong Khwai, Hang Dong, Chiang Mai 50230, Thailand",
+      "phone": "+66 53 441 700",
+      "website": "http://www.itglobal.co.th/",
+      "email": null,
+      "line_id": null,
+      "description": "Chiang Mai IT and web/software services company.",
+      "confidence": 0.65,
+      "contacts": [],
+      "sources": [
+        "https://localist.konigle.com/th/chiang-mai/web-development/"
+      ]
+    },
+    {
+      "name": "Now Web Design",
+      "type": "software_company",
+      "area": "Chiang Mai",
+      "address": null,
+      "phone": null,
+      "website": "https://websitedesignchiangmai.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Chiang Mai agency delivering custom websites, e-commerce, graphic design and branding.",
+      "confidence": 0.65,
+      "contacts": [],
+      "sources": [
+        "https://searchstudio.co.th/agency/best-web-design-agencies-in-chiang-mai/"
+      ]
+    },
+    {
+      "name": "Creative Chili",
+      "type": "software_company",
+      "area": "Chiang Mai",
+      "address": null,
+      "phone": null,
+      "website": "https://creativechili.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Full-service Chiang Mai digital marketing and web design agency (25+ years) offering business-oriented web design, SEO, and social/content marketing.",
+      "confidence": 0.65,
+      "contacts": [],
+      "sources": [
+        "https://searchstudio.co.th/agency/best-web-design-agencies-in-chiang-mai/"
+      ]
+    },
+    {
+      "name": "DoNot6 Studio",
+      "type": "software_company",
+      "area": "Chiang Mai",
+      "address": null,
+      "phone": null,
+      "website": "http://www.donot6.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Chiang Mai web design/development studio building responsive websites across hospitality and retail industries.",
+      "confidence": 0.6,
+      "contacts": [],
+      "sources": [
+        "https://searchstudio.co.th/agency/best-web-design-agencies-in-chiang-mai/"
+      ]
+    },
+    {
+      "name": "Web a Way",
+      "type": "software_company",
+      "area": "Chiang Mai",
+      "address": null,
+      "phone": null,
+      "website": "https://web-a-way.com/",
+      "email": null,
+      "line_id": null,
+      "description": "International web design agency based in Chiang Mai (15+ years) specializing in WordPress, WooCommerce, PrestaShop and Shopify e-commerce.",
+      "confidence": 0.65,
+      "contacts": [],
+      "sources": [
+        "https://searchstudio.co.th/agency/best-web-design-agencies-in-chiang-mai/",
+        "https://aeroleads.com/list/top-software-companies-in-chiang-mai"
+      ]
+    },
+    {
+      "name": "Lobster Lab",
+      "type": "software_company",
+      "area": "Chiang Mai",
+      "address": null,
+      "phone": null,
+      "website": null,
+      "email": null,
+      "line_id": null,
+      "description": "Chiang Mai studio offering web development, digital marketing, branding and design.",
+      "confidence": 0.5,
+      "contacts": [],
+      "sources": [
+        "https://aeroleads.com/list/top-software-companies-in-chiang-mai"
+      ]
+    },
+    {
+      "name": "Integra Global Solutions",
+      "type": "software_company",
+      "area": "Chiang Mai",
+      "address": null,
+      "phone": null,
+      "website": null,
+      "email": null,
+      "line_id": null,
+      "description": "IT and business-process outsourcing company with a Chiang Mai delivery presence.",
+      "confidence": 0.5,
+      "contacts": [],
+      "sources": [
+        "https://aeroleads.com/list/top-software-companies-in-chiang-mai"
+      ]
+    }
+  ]
+}

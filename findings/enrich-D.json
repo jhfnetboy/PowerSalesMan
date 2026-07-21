@@ -1,0 +1,355 @@
+{
+  "companies": [
+    {
+      "name": "Punspace Nimman",
+      "area": "Nimman",
+      "address": "14 Sirimangkalajarn Rd, Soi 11, Mueang Chiang Mai 50200, Thailand",
+      "phone": "+66 81 875 0900",
+      "website": "https://www.punspace.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Original Punspace coworking location in the Nimman/Sirimangkalajarn area. NOTE: the official punspace.com contact page currently lists only the Tha Phae Gate and Wiang Kaew branches, so the Nimman branch may have closed or merged; address/phone here come from a directory listing (chiangmailocator) and are historical. Alt phone 089 851 1551.",
+      "confidence": 0.5,
+      "contacts": [],
+      "sources": [
+        "https://www.chiangmailocator.com/chiang-mai-businesses-6501:pun-space-nimman",
+        "https://www.punspace.com/contact"
+      ]
+    },
+    {
+      "name": "Punspace Tha Phae",
+      "area": "Old City",
+      "address": "7/2 Ratchadamnoen Rd, Soi 4, Sri Phum, Mueang, Chiang Mai 50200, Thailand",
+      "phone": "+66 91 068 8265",
+      "website": "https://www.punspace.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Punspace coworking space near Tha Phae Gate in the Old City. Confirmed via official Punspace contact page.",
+      "confidence": 0.9,
+      "contacts": [],
+      "sources": [
+        "https://www.punspace.com/contact",
+        "https://www.coworker.com/thailand/chiang-mai/punspace-tha-phae-gate"
+      ]
+    },
+    {
+      "name": "Punspace Wiang Kaew",
+      "area": "Old City",
+      "address": "10 Wiang Kaew Rd, Sri Phum, Mueang, Chiang Mai 50200, Thailand",
+      "phone": "+66 61 027 7885",
+      "website": "https://www.punspace.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Punspace coworking space on Wiang Kaew Rd in the Old City. Confirmed via official Punspace contact page.",
+      "confidence": 0.9,
+      "contacts": [],
+      "sources": [
+        "https://www.punspace.com/contact",
+        "https://www.facebook.com/punspacewiangkaew/"
+      ]
+    },
+    {
+      "name": "CAMP - Creative and Startup Village",
+      "area": "Maya Mall",
+      "address": "5th Floor, MAYA Lifestyle Shopping Center, 55 Huay Kaew Rd, Chang Phueak, Mueang Chiang Mai District, Chiang Mai 50300, Thailand",
+      "phone": "+66 52 081 199",
+      "website": "https://www.facebook.com/p/CAMP-100063653855955/",
+      "email": null,
+      "line_id": null,
+      "description": "CAMP (Creative And Meeting Place), sponsored by AIS, a 24-hour coworking/cafe space on the 5th floor of MAYA mall. Also cited: 092 225 2092.",
+      "confidence": 0.8,
+      "contacts": [],
+      "sources": [
+        "https://www.chiangmaitravelhub.com/attractions/camp-chiang-mai/",
+        "https://workfrom.co/camp-creative-and-meeting-place-maya-chiang-mai-27355"
+      ]
+    },
+    {
+      "name": "Alt_ChiangMai",
+      "area": "Santitham",
+      "address": "129/1 Intrawarorot Rd, Tambon Si Phum, Mueang Chiang Mai District, Chiang Mai 50200, Thailand",
+      "phone": null,
+      "website": "https://www.altcoliving.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Alt Coliving & Coworking space for digital nomads. Address per directory listings; no phone number could be verified from a reliable source. Contact primarily via website/Facebook (facebook.com/altcolivingCM).",
+      "confidence": 0.6,
+      "contacts": [],
+      "sources": [
+        "https://www.coworker.com/thailand/chiang-mai/alt-chiangmai",
+        "https://www.altcoliving.com/",
+        "https://www.facebook.com/altcolivingCM/"
+      ]
+    },
+    {
+      "name": "Yellow Coworking Space",
+      "area": "Nimman",
+      "address": "16/2 Nimmanhaemin Rd, Mueang Chiang Mai District, Chiang Mai 50200, Thailand",
+      "phone": "+66 62 919 3223",
+      "website": "https://www.yellowcoworking.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Yellow Coworking (by Yellow Incubator) on Nimmanhaemin Rd, open 24 hours. Offers shared/private offices, meeting rooms, Skype booths, YouTube rooms.",
+      "confidence": 0.85,
+      "contacts": [],
+      "sources": [
+        "https://www.servicedoffice.com/thailand/chang-wat-chiang-mai/mueang-chiang-mai-district/yellow-coworking-space-co-working",
+        "https://www.yellowincubator.com/coworking"
+      ]
+    },
+    {
+      "name": "The Brick Startup Space",
+      "area": "Nimman",
+      "address": "31 Sirimangkalajarn Rd, Lane 13, Mueang Chiang Mai, Chiang Mai 50200, Thailand",
+      "phone": "+66 65 269 5616",
+      "website": "https://step.cmu.ac.th/the_brick.php",
+      "email": "thebrickspace@gmail.com",
+      "line_id": null,
+      "description": "Startup/coworking space for new entrepreneurs, operated by CMU STeP (Science and Technology Park, Chiang Mai University). Near Nimman off Sirimangklajarn Soi 13. Address, phone and email confirmed from official CMU STeP page.",
+      "confidence": 0.9,
+      "contacts": [],
+      "sources": [
+        "https://step.cmu.ac.th/the_brick.php",
+        "https://www.coworker.com/thailand/chiang-mai/the-brick-startup-space"
+      ]
+    },
+    {
+      "name": "Heartwork Coworking Space",
+      "area": "Nimman",
+      "address": "196 1-2 Kamphaeng Din Rd, Mueang Chiang Mai District, Chiang Mai 50100, Thailand",
+      "phone": "+66 53 208 669",
+      "website": null,
+      "email": null,
+      "line_id": null,
+      "description": "HeartWork The Sharing Space, a two-story cafe + coworking space with print shop. NOTE: located on Kamphaeng Din Rd (Night Bazaar area), not strictly in Nimman despite the DB area tag.",
+      "confidence": 0.75,
+      "contacts": [],
+      "sources": [
+        "https://www.coworker.com/thailand/chiang-mai/heartwork-the-sharing-space",
+        "https://www.goatsontheroad.com/best-coworking-spaces-in-chiang-mai/"
+      ]
+    },
+    {
+      "name": "Mana Coworking",
+      "area": "Old City",
+      "address": "28/12 Nimmanhaemin Rd (Soi 13), Su Thep, Mueang, Chiang Mai 50200, Thailand",
+      "phone": null,
+      "website": null,
+      "email": null,
+      "line_id": null,
+      "description": "MANA Co-working & Reading Space. NOTE: multiple sources indicate it is located on Nimmanhaemin Soi 13 (not Old City as tagged) and that it may be PERMANENTLY CLOSED. No phone or website could be verified.",
+      "confidence": 0.4,
+      "contacts": [],
+      "sources": [
+        "https://www.tripadvisor.com/Restaurant_Review-g293917-d7273520-Reviews-MANA_Co_working_Reading_space-Chiang_Mai.html",
+        "https://www.coworkbooking.com/asia/thailand/chiang-mai/mana"
+      ]
+    },
+    {
+      "name": "Hub53 Coworking & Cafe",
+      "area": "Nimman",
+      "address": "53 Chonpratan Rd, Suthep, Mueang Chiang Mai District, Chiang Mai 50200, Thailand",
+      "phone": "+66 81 602 2434",
+      "website": "https://www.hub53.com/",
+      "email": "hub53coworking@gmail.com",
+      "line_id": null,
+      "description": "Hub53 Coworking & Coliving Space + cafe on Chonpratan Rd near CMU (Suthep). NOTE: located on Chonpratan Rd, west of Nimman proper.",
+      "confidence": 0.85,
+      "contacts": [],
+      "sources": [
+        "https://www.hub53.com/contact-1",
+        "https://www.coworker.com/thailand/chiang-mai/hub53-coworking-and-coliving-space"
+      ]
+    },
+    {
+      "name": "Wecosystem",
+      "area": "Nimman",
+      "address": null,
+      "phone": null,
+      "website": null,
+      "email": null,
+      "line_id": null,
+      "description": "UNVERIFIED. Could not confirm a Chiang Mai / Nimman coworking space named Wecosystem. A 'Wecosystem' coworking exists but is associated with Bangkok (support@wecosystem.co, +66 2 109 9695, wecoconnect.com) — Bangkok 02 area code, so likely a different/HQ entity, not verified as the Chiang Mai record. Facebook page facebook.com/wecosystem exists but shows no location. Needs manual verification.",
+      "confidence": 0.2,
+      "contacts": [],
+      "sources": [
+        "https://www.facebook.com/wecosystem/"
+      ]
+    },
+    {
+      "name": "Chiang Mai University - CAMT",
+      "area": "CMU",
+      "address": "College of Arts, Media and Technology, 239 Huay Kaew Rd, Su Thep, Mueang Chiang Mai District, Chiang Mai 50200, Thailand",
+      "phone": "+66 53 920 299",
+      "website": "https://www.camt.cmu.ac.th/en/",
+      "email": null,
+      "line_id": null,
+      "description": "CMU College of Arts, Media and Technology (CAMT). Phone +66 53 920 299 (fax +66 53 941 803). Program email bs.mmit@camt.info. Faculty-specific address/phone used, not the CMU switchboard.",
+      "confidence": 0.85,
+      "contacts": [],
+      "sources": [
+        "https://www.camt.cmu.ac.th/en/contact/",
+        "https://www.chiangmailocator.com/chiang-mai-international-schools-6412:camt-college-of-arts-media-and-technology-cmu"
+      ]
+    },
+    {
+      "name": "Chiang Mai University - Faculty of Engineering (Computer Eng.)",
+      "area": "CMU",
+      "address": "Department of Computer Engineering, Faculty of Engineering, CMU, 239 Huay Kaew Rd, Su Thep, Mueang, Chiang Mai 50200, Thailand",
+      "phone": "+66 53 942 023",
+      "website": "https://www.cpe.eng.cmu.ac.th/index-english.php",
+      "email": "cpe@eng.cmu.ac.th",
+      "line_id": null,
+      "description": "Department of Computer Engineering, CMU Faculty of Engineering. Dept phone +66 53 942 023 (fax +66 53 942 072). Department-specific contact used.",
+      "confidence": 0.8,
+      "contacts": [],
+      "sources": [
+        "https://www.cpe.eng.cmu.ac.th/index-english.php",
+        "https://reg.eng.cmu.ac.th/reg_index/contact.php?lang=en"
+      ]
+    },
+    {
+      "name": "Payap University - IT / International College",
+      "area": "Mae Khao",
+      "address": "The International College, Payap University (Mae Khao Campus), Super Highway Chiang Mai-Lampang Rd, Amphur Mueang, Chiang Mai 50000, Thailand",
+      "phone": "+66 53 241 255 ext 7203",
+      "website": "https://wp.payap.ac.th/",
+      "email": "admissions_pyu@payap.ac.th",
+      "line_id": null,
+      "description": "Payap University International College (Mae Khao main campus). Phone is the university line with International College extension 7203.",
+      "confidence": 0.75,
+      "contacts": [],
+      "sources": [
+        "https://wp.payap.ac.th/contact-us/",
+        "https://inter.payap.ac.th/contact-us/"
+      ]
+    },
+    {
+      "name": "Maejo University - Information Technology",
+      "area": "Sansai",
+      "address": "Information Technology Division, Faculty of Science, Maejo University, 63 Chiang Mai-Phrao Rd, Nong Han, San Sai District, Chiang Mai 50290, Thailand",
+      "phone": "+66 53 873 900",
+      "website": "https://www.mju.ac.th/en/",
+      "email": "info.itsci@mju.ac.th",
+      "line_id": null,
+      "description": "IT Division, Faculty of Science, Maejo University. Phone +66 53 873 900 is the faculty/university line; division email info.itsci@mju.ac.th. Division Facebook: facebook.com/IT.Major.MJU.",
+      "confidence": 0.7,
+      "contacts": [],
+      "sources": [
+        "https://www.facebook.com/IT.Major.MJU/",
+        "https://en.wikipedia.org/wiki/Maejo_University"
+      ]
+    },
+    {
+      "name": "Rajamangala University of Technology Lanna (RMUTL)",
+      "area": "Old City",
+      "address": "128 Huay Kaew Rd, Chang Phueak, Mueang Chiang Mai District, Chiang Mai 50300, Thailand",
+      "phone": "+66 53 921 444",
+      "website": "https://www.rmutl.ac.th/",
+      "email": null,
+      "line_id": null,
+      "description": "RMUTL Chiang Mai main campus. NOTE: campus is on Huay Kaew Rd near Chang Phueak, adjacent to the Old City moat. Address/phone are the main campus switchboard.",
+      "confidence": 0.75,
+      "contacts": [],
+      "sources": [
+        "https://en.rmutl.ac.th/",
+        "https://www.chiangmailocator.com/chiang-mai-international-schools-4201:rajamangala-university-of-technology-lanna"
+      ]
+    },
+    {
+      "name": "Chiang Mai Rajabhat University - Computer Science",
+      "area": "Chang Phueak",
+      "address": "Department of Computers, Faculty of Science and Technology, Chiang Mai Rajabhat University, 202 Chang Phueak Rd, Chang Phueak, Mueang Chiang Mai District, Chiang Mai 50300, Thailand",
+      "phone": "+66 53 885 555",
+      "website": "https://www.computer.cmru.ac.th/en/home",
+      "email": null,
+      "line_id": null,
+      "description": "Department of Computers, Faculty of Science and Technology, CMRU. Phone +66 53 885 555 is the university switchboard (department-specific direct line not verified).",
+      "confidence": 0.7,
+      "contacts": [],
+      "sources": [
+        "https://www.computer.cmru.ac.th/en/home",
+        "https://en.wikipedia.org/wiki/Chiang_Mai_Rajabhat_University"
+      ]
+    },
+    {
+      "name": "Chiang Mai Entrepreneurship Association (CMEA)",
+      "area": "Chiang Mai",
+      "address": null,
+      "phone": null,
+      "website": null,
+      "email": null,
+      "line_id": null,
+      "description": "Entrepreneur community/association in Chiang Mai. Primary public presence is Facebook (facebook.com/ChiangMaiEntrepreneurs). No verified street address, phone or official website could be confirmed for the Chiang Mai body (several unrelated 'CMEA' domains exist globally, not verified as this org).",
+      "confidence": 0.3,
+      "contacts": [],
+      "sources": [
+        "https://www.facebook.com/ChiangMaiEntrepreneurs/"
+      ]
+    },
+    {
+      "name": "Startup Chiang Mai",
+      "area": "Chiang Mai",
+      "address": null,
+      "phone": null,
+      "website": null,
+      "email": null,
+      "line_id": null,
+      "description": "Startup/entrepreneurship community and content directory for Chiang Mai. Public presence via Facebook (facebook.com/startupcmdotcom) and the Chiang Mai Startup Ecosystem Community on Meetup. NOTE: the domain startupchiangmai.com appeared in search but did not resolve on DNS at time of research, so not recorded as a verified website. No phone/address (community, not a fixed venue).",
+      "confidence": 0.4,
+      "contacts": [],
+      "sources": [
+        "https://www.facebook.com/startupcmdotcom/",
+        "https://www.meetup.com/chiang-mai-startup-ecosystem-community/"
+      ]
+    },
+    {
+      "name": "Chiang Mai Maker Club",
+      "area": "Chiang Mai",
+      "address": "81/21-25 Arak Rd, Phra Sing, Mueang Chiang Mai District, Chiang Mai 50200, Thailand",
+      "phone": "+66 53 279 201",
+      "website": "https://medium.com/chiang-mai-maker-club",
+      "email": null,
+      "line_id": null,
+      "description": "Open maker community fusing engineering, art, design and technology. Address on Arak Rd (Old City/Phra Sing). NOTE: distinct from 'Makerspace Thailand' (7/2 Ratchadamnoen Soi 4). Address/phone per Creative Chiang Mai / ChiangMai.net directory listings.",
+      "confidence": 0.55,
+      "contacts": [],
+      "sources": [
+        "https://creativechiangmai.com/language/en/itdirectory/chiang-mai-maker-club/",
+        "https://www.chiangmai.net/business-directory/creative-space---makerclub-chiang-mai-5994"
+      ]
+    },
+    {
+      "name": "Nomad Coffee Club Chiang Mai",
+      "area": "Nimman",
+      "address": null,
+      "phone": null,
+      "website": "https://www.facebook.com/groups/nomadcoffee/",
+      "email": null,
+      "line_id": null,
+      "description": "Digital Nomad Coffee Club - a weekly digital-nomad meetup community (talks + networking) hosted at rotating cafe venues in Chiang Mai, NOT a fixed cafe/business. No fixed address or phone; organized via the Facebook group and Nomad Summit.",
+      "confidence": 0.5,
+      "contacts": [],
+      "sources": [
+        "https://www.facebook.com/groups/nomadcoffee/",
+        "https://www.nomadsummit.com/clubs/"
+      ]
+    },
+    {
+      "name": "Codustry",
+      "area": "Chiang Mai",
+      "address": null,
+      "phone": null,
+      "website": "https://www.codustry.com/",
+      "email": null,
+      "line_id": null,
+      "description": "Thai technology company/collective focused on democratizing tech and building Thailand's tech ecosystem. NOTE: its registered corporate address found is in Samut Prakan (75 Moo.3 Bang Kru, Phra Pradaeng, Samut Prakan 10130), NOT Chiang Mai; no Chiang Mai street address or phone could be verified despite the DB area tag. LinkedIn: linkedin.com/company/codustry.",
+      "confidence": 0.4,
+      "contacts": [],
+      "sources": [
+        "https://www.codustry.com/",
+        "https://sg.linkedin.com/company/codustry"
+      ]
+    }
+  ]
+}

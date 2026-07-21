@@ -26,7 +26,21 @@
 ✅ **销售临时授权码**:管理员在网页里生成销售登陆码,默认 7 天到期,可撤销
 ✅ **三语切换**:英 / 中 / 泰(默认跟随 `DEFAULT_LANG`)
 
-🚧 下一步:自动联网采集(地址/电话/联系人富集)、每 4h 增量循环、email/Line 自动触达
+✅ **联网富集入库**:多代理扫黄页/谷歌地图/榜单聚合站/LinkedIn,发现真实清迈软件公司并补全地址/电话/联系人;`import-findings` 合并去重入库、`dedupe` 按电话/核心名合并重复
+✅ 数据现状:**75 家机构**(含 54 家软件公司/agency,40 家带地址、35 家带电话) — 出处见 `findings/`
+
+🚧 下一步:每 4h 增量循环、email/Line 自动触达、Cloudflare D1 版
+
+## 数据富集(重建库)
+
+```bash
+pnpm psm seed                       # 先灌种子
+pnpm tsx src/import-findings.ts findings/   # 合并联网富集结果入库
+pnpm tsx src/dedupe.ts              # 按电话/核心名去重
+pnpm psm score                      # 给新公司打分
+```
+
+`findings/enrich-*.json` 是研究代理的产出(带 sources 出处、confidence);数据库 `data/psm.db` 本地生成、不进仓库。
 
 ## 登陆与权限
 
