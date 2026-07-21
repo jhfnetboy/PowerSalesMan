@@ -29,7 +29,25 @@
 ✅ **联网富集入库**:多代理扫黄页/谷歌地图/榜单聚合站/LinkedIn,发现真实清迈软件公司并补全地址/电话/联系人;`import-findings` 合并去重入库、`dedupe` 按电话/核心名合并重复
 ✅ 数据现状:**75 家机构**(含 54 家软件公司/agency,40 家带地址、35 家带电话) — 出处见 `findings/`
 
-🚧 下一步:每 4h 增量循环、email/Line 自动触达、Cloudflare D1 版
+✅ **Cloudflare 上云**:Worker + D1 + 静态资源三合一,公网可访问 → **https://powersalesman.jhfnetboy.workers.dev**(登录、地图、打分、销售授权码全可用,数据在 D1)
+
+🚧 下一步:每 4h 增量循环、email/Line 自动触达、登录限流
+
+## ☁️ Cloudflare 部署(cloudflare/)
+
+后端从本地 SQLite 移植到 **D1**(同步→异步)、Node http server → **Worker**,前端(`public/index.html`)原样复用。
+
+```bash
+cd cloudflare
+npx wrangler d1 execute powersalesman --remote --file schema.sql -y     # 建表
+npx wrangler d1 execute powersalesman --remote --file seed-data.sql -y  # 灌数据(从本地库导出)
+npx wrangler deploy                                                     # 部署
+printf '%s' '<强密码>' | npx wrangler secret put ADMIN_PASSWORD         # 设管理员密码(勿写进配置)
+```
+
+- 管理员密码是 Cloudflare Secret,不进代码/仓库;公网版务必用强密码(登录暂无限流)。
+- `seed-data.sql` 由本地 `data/psm.db` 导出;要同步最新数据重新导出再 execute 即可。
+- 接大模型打分:`wrangler secret put AI_API_KEY`(不设则用启发式)。
 
 ## 数据富集(重建库)
 

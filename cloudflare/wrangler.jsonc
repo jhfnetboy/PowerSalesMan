@@ -1,0 +1,19 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "powersalesman",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-07-01",
+  "assets": { "directory": "./public", "binding": "ASSETS" },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "powersalesman",
+      "database_id": "c40ff2f6-e418-4d9d-aab1-3f6392a8ba96"
+    }
+  ],
+  "vars": {
+    "DEFAULT_LANG": "en",
+    "SESSION_TTL_DAYS": "30"
+  },
+  "observability": { "enabled": true }
+}
