@@ -31,7 +31,7 @@
 pnpm install
 pnpm psm seed          # 灌入清迈种子清单
 pnpm psm score --all   # 给所有线索打分(无 key = 启发式)
-pnpm psm serve         # 打开 http://localhost:5173 管理台
+pnpm psm serve         # 打开 http://localhost:57219 管理台
 ```
 
 ### 命令
@@ -41,7 +41,7 @@ pnpm psm serve         # 打开 http://localhost:5173 管理台
 | `pnpm psm seed` | 灌入/增量更新种子清单(幂等) |
 | `pnpm psm list` | 终端里按意向排序列出线索 |
 | `pnpm psm score --all` | 给全部线索打分(`--id N` 只打一个) |
-| `pnpm psm serve -p 5173` | 启动本地管理网页 |
+| `pnpm psm serve -p 57219` | 启动本地管理网页 |
 
 ### 接大模型打分(可选)
 

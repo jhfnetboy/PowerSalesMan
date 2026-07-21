@@ -59,7 +59,7 @@ program
 program
   .command("serve")
   .description("启动本地管理网页")
-  .option("-p, --port <port>", "端口", "5173")
+  .option("-p, --port <port>", "端口", "57219")
   .action((opts: { port: string }) => {
     initSchema();
     startServer(Number(opts.port));
